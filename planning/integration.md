@@ -1,3 +1,45 @@
+## Retrieving Station Information
+
+Station information can be accessed via a JSON api
+
+https://api-core.citibikenyc.com/gbfs/en/station_information.json
+
+```
+{
+  last_updated: 1499596403,
+  ttl: 10,
+  data: {
+    stations: [{
+          station_id: "72",
+          name: "W 52 St & 11 Ave",
+          short_name: "6926.01",
+          lat: 40.76727216,
+          lon: -73.99392888,
+          region_id: 71,
+          rental_methods: [
+            "KEY",
+            "CREDITCARD"
+          ],
+          capacity: 39,
+          eightd_has_key_dispenser: false
+        },
+        {
+          station_id: "79",
+          name: "Franklin St & W Broadway",
+          short_name: "5430.08",
+          lat: 40.71911552,
+          lon: -74.00666661,
+          region_id: 71,
+          rental_methods: [
+            "KEY",
+            "CREDITCARD"
+          ],
+          capacity: 33,
+          eightd_has_key_dispenser: false
+        },
+...
+```
+
 ## Retrieving Trips
 
 A non-paginated list of trips in plain HTML form can be retrieved by hitting the below link:
@@ -20,6 +62,8 @@ This returns a table containing:
 | --- | --- | --- |
 | 10/03/2016 12:23:56 PM <br>Mott St & Prince St | 10/03/2016 12:30:17 PM <br> Allen St & Hester St | 6 min 21 s |
 | 09/27/2016 10:11:49 PM <br> Leonard St & Church St | 09/27/2016 10:17:52 PM <br> Cleveland Pl & Spring St | 6 min 3 s |
+
+The station names provided here match the names in the station info API above and can be used to match the trip to the stations. 
 
 The HTML representation of this table is: 
 
