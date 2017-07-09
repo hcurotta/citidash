@@ -14,8 +14,6 @@ Parameters:
 
 * Note that the start and end dates may not be more than 16 months apart
 
-The response contains a div-formed table of trips as below:
-
 The HTML representation of this table is: 
 
 ```
