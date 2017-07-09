@@ -14,6 +14,13 @@ Parameters:
 
 * Note that the start and end dates may not be more than 16 months apart
 
+This returns a table containing:
+
+| Start | End | Duration |
+| --- | --- | --- |
+| 10/03/2016 12:23:56 PM <br>Mott St & Prince St | 10/03/2016 12:30:17 PM <br> Allen St & Hester St | 6 min 21 s |
+| 09/27/2016 10:11:49 PM <br> Leonard St & Church St | 09/27/2016 10:17:52 PM <br> Cleveland Pl & Spring St | 6 min 3 s |
+
 The HTML representation of this table is: 
 
 ```
