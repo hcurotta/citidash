@@ -8,7 +8,7 @@ To get up and running in dev
 
 1. Install all the gems by running `bundle install`
 2. run the development server with `foreman start -f Procfile` 
-3. navigate to (0.0.0.0:5000)[http://0.0.0.0:5000]
+3. navigate to [0.0.0.0:5000](http://0.0.0.0:5000)
 
 Note that foreman doesn't work all that well with pry-byebug, so to do debugging with that, it's best to run the server using `rackup`. This will run a server on port 9292.
 
