@@ -24,6 +24,7 @@ require 'active_support/json'
 Dir['lib/**/*.rb'].sort.each { |file| require file }
 
 require 'app/models'
+require 'app/services'
 require 'app/helpers'
 require 'app/routes'
 
@@ -40,29 +41,31 @@ module CitiDash
     #   database.loggers << Logger.new(STDOUT)
     # end
 
-    configure do
-      disable :method_override
-      disable :static
+    # configure do
+    #   disable :method_override
+    #   disable :static
 
-      set :sessions,
-          httponly: true,
-          secure: production?,
-          secure: false,
-          expire_after: 5.years,
-          secret: ENV['SESSION_SECRET']
-    end
+    #   set :sessions,
+    #       httponly: true,
+    #       secure: production?,
+    #       secure: false,
+    #       expire_after: 5.years,
+    #       secret: ENV['SESSION_SECRET']
+    # end
 
     Dir['config/initializers/*.rb'].sort.each { |file| require file }
 
     use Rack::Deflater
 
     # Other routes:
+    use Routes::Authentication
     use Routes::Users
+    use Routes::Stats
   end
 end
 
 include CitiDash
 include CitiDash::Models
+include CitiDash::Services
 
 DB = Sequel.connect(CitiDash::App.database)
-

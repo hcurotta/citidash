@@ -22,4 +22,9 @@ namespace :db do
     `sequel -d #{database.url} > db/schema.rb`
     `pg_dump --schema-only #{database.url} > db/schema.sql`
   end
+
+  desc 'Seed'
+  task :seed => :app do
+    StationLoader.refresh_stations
+  end
 end

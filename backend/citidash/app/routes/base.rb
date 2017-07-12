@@ -4,11 +4,10 @@ module CitiDash
       configure do
         set :root, App.root
 
-        disable :method_override
-        disable :protection
-        disable :static
+        # disable :method_override
+        # disable :protection
 
-        enable :use_code
+        # enable :use_code
       end
 
       helpers Helpers

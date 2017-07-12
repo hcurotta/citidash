@@ -34,6 +34,7 @@ GEM
     hashdiff (0.3.4)
     i18n (0.8.5)
     json (2.1.0)
+    jwt (1.5.6)
     mechanize (2.1.1)
       domain_name (~> 0.5, >= 0.5.1)
       net-http-digest_auth (~> 1.1, >= 1.1.1)
@@ -94,6 +95,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    vcr (3.0.1)
     webmock (3.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -109,6 +111,7 @@ DEPENDENCIES
   dotenv
   foreman
   json
+  jwt (~> 1.5)
   mechanize
   pg
   pry
@@ -120,6 +123,7 @@ DEPENDENCIES
   sequel
   sinatra
   sinatra-contrib!
+  vcr
   webmock
 
 RUBY VERSION

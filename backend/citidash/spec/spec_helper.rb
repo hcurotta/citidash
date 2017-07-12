@@ -5,11 +5,14 @@ require File.expand_path('../../app', __FILE__)
 require 'pry'
 require 'rspec'
 require 'rack/test'
+require 'webmock/rspec'
+require 'vcr'
 require 'database_cleaner'
-# require 'webmock/rspec'
 
 RSpec.configure do |config|
   include Rack::Test::Methods
+  config.extend VCR::RSpec::Macros
+
   config.order = 'random'
 
   config.before(:suite) do
@@ -32,4 +35,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.hook_into :webmock
 end
