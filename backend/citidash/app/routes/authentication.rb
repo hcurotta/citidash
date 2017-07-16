@@ -6,7 +6,13 @@ module CitiDash
         authenticator = Authenticator.new(params[:email], params[:password])
         user = authenticator.authenticate_user
         if user 
-          user.jwt
+          {
+            auth_token: user.jwt,
+            user: {
+              id: user.id,
+              name: user.short_name
+            }
+          }.to_json
         else 
           halt 401
         end

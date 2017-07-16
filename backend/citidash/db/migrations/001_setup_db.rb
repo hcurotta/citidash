@@ -3,9 +3,11 @@ Sequel.migration do
     create_table(:users) do
       primary_key :id
       String :email
-      String :password
+      String :encrypted_password
+      String :password_iv
       String :first_name
       String :last_name
+      String :short_name
       String :citibike_id, :null=>false
     end
   end

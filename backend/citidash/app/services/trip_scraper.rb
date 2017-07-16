@@ -10,13 +10,20 @@ module CitiDash
         scrape_trips(agent)
       end
 
-      def scrape_trips(agent)
+      def scrape_trips(agent, hard_refresh=false)
         # The page only loads in 16 month increments
         end_date = Time.now
+        last_scraped = @user.trips_dataset.order(Sequel.desc(:ended_at)).first.try(:ended_at)
 
         begin 
           trip_items = []
           start_date = end_date - 16.months
+
+          if !hard_refresh && last_scraped && start_date < last_scraped
+            start_date = last_scraped
+          end
+
+
           formatted_start_date = start_date.strftime("%m/%d/%Y")
           formatted_end_date = end_date.strftime("%m/%d/%Y")
           export_url = "https://member.citibikenyc.com/profile/trips/#{@user.citibike_id}/print?edTripsPrint[startDate]=#{formatted_start_date}&edTripsPrint[endDate]=#{formatted_end_date}"
@@ -32,32 +39,27 @@ module CitiDash
             trip_destination = item.search('div.ed-table__item__info__sub-info_trip-end-station').text
 
             origin_station = Station.find(name: trip_origin)
+            origin_station = Station.create(name: trip_origin, inactive: true) if origin_station.nil?
             
-            if origin_station.nil?
-              origin_station = Station.create(name: trip_origin, inactive: true)
-            end
-
             destination_station = Station.find(name: trip_destination)
+            destination_station = Station.create(name: trip_destination, inactive: true) if destination_station.nil?
 
-            if destination_station.nil?
-              destination_station = Station.create(name: trip_destination, inactive: true)
-            end
-
-            started_at = DateTime.strptime(trip_start_time, "%m/%d/%Y %I:%M:%S %p")
-            ended_at = DateTime.strptime(trip_end_time, "%m/%d/%Y %I:%M:%S %p")
+            started_at = DateTime.strptime(trip_start_time + " EST", "%m/%d/%Y %I:%M:%S %p %z").utc
+            ended_at = DateTime.strptime(trip_end_time + " EST", "%m/%d/%Y %I:%M:%S %p %z").utc
             duration = ended_at.to_i - started_at.to_i
 
             Trip.find_or_create({
-              user: @user,
-              origin: origin_station,
-              destination: destination_station,
+              user_id: @user.id,
+              origin_id: origin_station.id,
+              destination_id: destination_station.id,
               started_at: started_at,
               ended_at: ended_at,
               duration_in_seconds: duration
             })
+
           end
           end_date = end_date - 16.months
-        end while trip_items.count > 0
+        end while trip_items.count > 0 || (last_scraped && last_scraped != start_date)
       end
     end
   end

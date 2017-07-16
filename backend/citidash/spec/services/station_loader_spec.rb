@@ -8,7 +8,7 @@ RSpec.describe StationLoader, :type => :service do
       StationLoader.refresh_stations
       stations = Station.dataset
       station = stations.first
-      expect(stations.count).to eq(668)
+      expect(stations.count).to eq(667)
       expect(station.citibike_station_id).to eq(72)
       expect(station.name).to eq("W 52 St & 11 Ave")
       expect(station.lat).to eq(40.76727216)

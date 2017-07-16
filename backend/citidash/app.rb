@@ -61,6 +61,7 @@ module CitiDash
     use Routes::Authentication
     use Routes::Users
     use Routes::Stats
+    use Routes::TripRoutes
   end
 end
 

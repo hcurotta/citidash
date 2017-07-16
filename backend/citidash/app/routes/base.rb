@@ -10,6 +10,11 @@ module CitiDash
         # enable :use_code
       end
 
+      before do
+        content_type 'application/json'
+      end
+
+
       helpers Helpers
     end
   end

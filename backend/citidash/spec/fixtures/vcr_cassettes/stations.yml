@@ -27,15 +27,15 @@ http_interactions:
       Content-Type:
       - application/json
       Last-Modified:
-      - Wed, 12 Jul 2017 21:49:18 GMT
+      - Sun, 16 Jul 2017 21:59:03 GMT
       Content-Length:
-      - '141551'
+      - '141334'
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 12 Jul 2017 21:49:18 GMT
+      - Sun, 16 Jul 2017 21:59:03 GMT
       X-Varnish:
-      - '948333717'
+      - '950763294'
       Age:
       - '0'
       Via:
@@ -44,7 +44,7 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"last_updated":1499896154,"ttl":10,"data":{"stations":[{"station_id":"72","name":"W
+      string: '{"last_updated":1500242340,"ttl":10,"data":{"stations":[{"station_id":"72","name":"W
         52 St & 11 Ave","short_name":"6926.01","lat":40.76727216,"lon":-73.99392888,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":39,"eightd_has_key_dispenser":false},{"station_id":"79","name":"Franklin
         St & W Broadway","short_name":"5430.08","lat":40.71911552,"lon":-74.00666661,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":33,"eightd_has_key_dispenser":false},{"station_id":"82","name":"St
         James Pl & Pearl St","short_name":"5167.06","lat":40.71117416,"lon":-74.00016545,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":27,"eightd_has_key_dispenser":false},{"station_id":"83","name":"Atlantic
@@ -126,7 +126,7 @@ http_interactions:
         St & Spring St","short_name":"5532.01","lat":40.72362738,"lon":-73.99949601,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":31,"eightd_has_key_dispenser":false},{"station_id":"304","name":"Broadway
         & Battery Pl","short_name":"4962.01","lat":40.70463334,"lon":-74.01361706,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":34,"eightd_has_key_dispenser":true},{"station_id":"305","name":"E
         58 St & 3 Ave","short_name":"6762.02","lat":40.76095756,"lon":-73.96724467,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":33,"eightd_has_key_dispenser":false},{"station_id":"306","name":"Cliff
-        St & Fulton St","short_name":"5065.11","lat":40.70823502,"lon":-74.00530063,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":17,"eightd_has_key_dispenser":false},{"station_id":"307","name":"Canal
+        St & Fulton St","short_name":"5065.13","lat":40.70823502,"lon":-74.00530063,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":17,"eightd_has_key_dispenser":false},{"station_id":"307","name":"Canal
         St & Rutgers St","short_name":"5303.08","lat":40.71427487,"lon":-73.98990025,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":3,"eightd_has_key_dispenser":false},{"station_id":"308","name":"St
         James Pl & Oliver St","short_name":"5238.05","lat":40.71307916,"lon":-73.99851193,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":27,"eightd_has_key_dispenser":false},{"station_id":"309","name":"Murray
         St & West St","short_name":"5329.06","lat":40.7149787,"lon":-74.013012,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":41,"eightd_has_key_dispenser":false},{"station_id":"310","name":"State
@@ -157,7 +157,7 @@ http_interactions:
         Slip & Front St","short_name":"4993.12","lat":40.7037992,"lon":-74.00838676,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":37,"eightd_has_key_dispenser":false},{"station_id":"339","name":"Avenue
         D & E 12 St","short_name":"5575.08","lat":40.72580614,"lon":-73.97422494,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":24,"eightd_has_key_dispenser":false},{"station_id":"340","name":"Madison
         St & Clinton St","short_name":"5190.07","lat":40.71269042,"lon":-73.98776323,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":27,"eightd_has_key_dispenser":false},{"station_id":"341","name":"Stanton
-        St & Mangin St","short_name":"5326.06","lat":40.71782143,"lon":-73.97628939,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":12,"eightd_has_key_dispenser":false},{"station_id":"342","name":"Columbia
+        St & Mangin St","short_name":"5326.06","lat":40.71782143,"lon":-73.97628939,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":19,"eightd_has_key_dispenser":false},{"station_id":"342","name":"Columbia
         St & Rivington St","short_name":"5365.02","lat":40.71739973,"lon":-73.98016555,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":29,"eightd_has_key_dispenser":false},{"station_id":"343","name":"Clinton
         Ave & Flushing Ave","short_name":"4762.04","lat":40.69794,"lon":-73.96986848,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":23,"eightd_has_key_dispenser":false},{"station_id":"344","name":"Monroe
         St & Bedford Ave","short_name":"4368.05","lat":40.6851443,"lon":-73.95380904,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":23,"eightd_has_key_dispenser":false},{"station_id":"345","name":"W
@@ -303,7 +303,7 @@ http_interactions:
         25 St & 2 Ave","short_name":"6046.02","lat":40.73912601,"lon":-73.97973776,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":47,"eightd_has_key_dispenser":false},{"station_id":"508","name":"W
         46 St & 11 Ave","short_name":"6795.01","lat":40.76341379,"lon":-73.99667444,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":24,"eightd_has_key_dispenser":false},{"station_id":"509","name":"9
         Ave & W 22 St","short_name":"6266.06","lat":40.7454973,"lon":-74.00197139,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":36,"eightd_has_key_dispenser":false},{"station_id":"511","name":"E
-        14 St & Avenue B","short_name":"5736.09","lat":40.72938685,"lon":-73.97772429,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":33,"eightd_has_key_dispenser":false},{"station_id":"513","name":"W
+        14 St & Avenue B","short_name":"5736.09","lat":40.72938685,"lon":-73.97772429,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":31,"eightd_has_key_dispenser":false},{"station_id":"513","name":"W
         56 St & 10 Ave","short_name":"6955.01","lat":40.768254,"lon":-73.988639,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":27,"eightd_has_key_dispenser":false},{"station_id":"514","name":"12
         Ave & W 40 St","short_name":"6765.01","lat":40.76087502,"lon":-74.00277668,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":52,"eightd_has_key_dispenser":true},{"station_id":"515","name":"W
         43 St & 10 Ave","short_name":"6756.01","lat":40.76009437,"lon":-73.99461843,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":35,"eightd_has_key_dispenser":false},{"station_id":"516","name":"E
@@ -407,8 +407,7 @@ http_interactions:
         Ave & Nassau Ave","short_name":"5550.05","lat":40.72311651,"lon":-73.95212324,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":39,"eightd_has_key_dispenser":false},{"station_id":"3108","name":"Nassau
         Ave & Russell St","short_name":"5581.01","lat":40.72557,"lon":-73.94434,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":24,"eightd_has_key_dispenser":false},{"station_id":"3109","name":"Banker
         St & Meserole Ave","short_name":"5633.04","lat":40.72606,"lon":-73.95621,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":31,"eightd_has_key_dispenser":false},{"station_id":"3110","name":"Meserole
-        Ave & Manhattan Ave","short_name":"5666.04","lat":40.72708584,"lon":-73.95299117,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":27,"eightd_has_key_dispenser":false},{"station_id":"3111","name":"Norman
-        Ave & Leonard St","short_name":"5666.05","lat":40.7258483,"lon":-73.95064893,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":25,"eightd_has_key_dispenser":false},{"station_id":"3112","name":"Milton
+        Ave & Manhattan Ave","short_name":"5666.04","lat":40.72708584,"lon":-73.95299117,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":27,"eightd_has_key_dispenser":false},{"station_id":"3112","name":"Milton
         St & Franklin St","short_name":"5752.07","lat":40.72906,"lon":-73.95779,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":33,"eightd_has_key_dispenser":false},{"station_id":"3113","name":"Greenpoint
         Ave & Manhattan Ave","short_name":"5785.05","lat":40.73026,"lon":-73.95394,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":27,"eightd_has_key_dispenser":false},{"station_id":"3115","name":"India
         St & Manhattan Ave","short_name":"5826.02","lat":40.73232194,"lon":-73.9550858,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":34,"eightd_has_key_dispenser":false},{"station_id":"3116","name":"Huron
@@ -699,7 +698,7 @@ http_interactions:
         St & Maujer St","short_name":"5148.03","lat":40.7103685423523,"lon":-73.94705951213837,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":24,"eightd_has_key_dispenser":false},{"station_id":"3455","name":"Schermerhorn
         St & 3 Ave","short_name":"4437.06","lat":40.68680820503432,"lon":-73.98036181926727,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":35,"eightd_has_key_dispenser":false},{"station_id":"3456","name":"Jackson
         St & Leonard St","short_name":"5332.10","lat":40.71638031973561,"lon":-73.94821286201477,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":22,"eightd_has_key_dispenser":false},{"station_id":"3457","name":"E
-        58 St & Madison Ave","short_name":"6839.04","lat":40.76302594280519,"lon":-73.97209525108337,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":33,"eightd_has_key_dispenser":false},{"station_id":"3458","name":"W
+        58 St & Madison Ave","short_name":"6839.04","lat":40.76302594280519,"lon":-73.97209525108337,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":46,"eightd_has_key_dispenser":false},{"station_id":"3458","name":"W
         55 St & 6 Ave","short_name":"6809.08","lat":40.76309387270797,"lon":-73.9783501625061,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":40,"eightd_has_key_dispenser":false},{"station_id":"3459","name":"E
         53 St & 3 Ave","short_name":"6617.02","lat":40.75763227739443,"lon":-73.96930575370789,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":34,"eightd_has_key_dispenser":false},{"station_id":"3461","name":"Murray
         St & Greenwich St","short_name":"5288.12","lat":40.714851505262516,"lon":-74.01122331619263,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":33,"eightd_has_key_dispenser":false},{"station_id":"3462","name":"E
@@ -710,7 +709,7 @@ http_interactions:
         St & West St","short_name":"5794.03","lat":40.73181401720966,"lon":-73.95995020866394,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":23,"eightd_has_key_dispenser":false},{"station_id":"3472","name":"W
         15 St & 10 Ave","short_name":"6115.09","lat":40.742753828659026,"lon":-74.00747358798981,"rental_methods":["KEY","CREDITCARD"],"capacity":39,"eightd_has_key_dispenser":false},{"station_id":"3474","name":"6
         Ave & Spring St","short_name":"5610.10","lat":40.72567882974356,"lon":-74.00406445842236,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":36,"eightd_has_key_dispenser":false},{"station_id":"3476","name":"Norman
-        Ave & Leonard St (2)","short_name":"5666.06","lat":40.72576996727214,"lon":-73.9507395029068,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":0,"eightd_has_key_dispenser":false}]}}'
+        Ave & Leonard St","short_name":"5666.06","lat":40.72576996727214,"lon":-73.9507395029068,"region_id":71,"rental_methods":["KEY","CREDITCARD"],"capacity":25,"eightd_has_key_dispenser":false}]}}'
     http_version: 
-  recorded_at: Wed, 12 Jul 2017 21:49:18 GMT
+  recorded_at: Sun, 16 Jul 2017 21:59:04 GMT
 recorded_with: VCR 3.0.1

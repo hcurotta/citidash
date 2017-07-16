@@ -307,7 +307,7 @@ http_interactions:
     uri: https://member.citibikenyc.com/profile/login_check
     body:
       encoding: UTF-8
-      string: _username=test%40gmail.com&_password=passtest007&_failure_path=eightd_bike_profile__login&ed_from_login_popup=true&_login_csrf_security_token=TSkvM2hYOLXkBTPWLVFLQbOq3i7drbY7Dea_KV9vzyk
+      string: _username=test%40gmail.com&_password=testpassword&_failure_path=eightd_bike_profile__login&ed_from_login_popup=true&_login_csrf_security_token=TSkvM2hYOLXkBTPWLVFLQbOq3i7drbY7Dea_KV9vzyk
     headers:
       Accept-Encoding:
       - gzip,deflate,identity

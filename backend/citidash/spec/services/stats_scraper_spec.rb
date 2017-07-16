@@ -6,8 +6,8 @@ RSpec.describe StatsScraper, :type => :service do
 
     before(:each) do 
       @user = User.create({
-        :email=>"test@gmail.com",
-        :password=>"passtest007",
+        :email=>"joebloggs@gmail.com",
+        :password=>"testpassword",
         :first_name=>"ABC",
         :last_name=>"XYZ",
         :citibike_id=>"NU7S9DAK-1"

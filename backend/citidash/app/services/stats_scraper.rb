@@ -6,13 +6,17 @@ module CitiDash
       end
 
       def load_stats
-        authenticator = Authenticator.new(@user.email, @user.password)
-        authenticator.login
-        page = authenticator.agent.get("https://member.citibikenyc.com/profile/")
-        scrape_stats(page)
+        agent = Authenticator.get_authenticated_agent(@user)
+        scrape_stats(agent)
       end
 
-      def scrape_stats(page)
+      def scrape_stats(agent)
+        if !agent.page.uri.to_s == "https://member.citibikenyc.com/profile/"
+          agent.get("https://member.citibikenyc.com/profile/")
+        end
+
+        page = agent.page
+
         statistics = Statistics.find_or_create(user_id: @user.id)
         trip_count = page.search("div.ed-panel__info__value_member-stats-for-period_lifetime")[0].text.to_i
         duration_string = page.parser.xpath("//div[.='Total usage time']/following-sibling::div[1]")[0].text

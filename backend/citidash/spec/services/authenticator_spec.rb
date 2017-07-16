@@ -5,7 +5,7 @@ RSpec.describe Authenticator, :type => :service do
     use_vcr_cassette "login"
 
     before(:each) do 
-      @authenticator = Authenticator.new("test@gmail.com", "passtest007")
+      @authenticator = Authenticator.new("joebloggs@gmail.com", "testpassword")
     end
 
     it "should retrieve user details and create a new user" do 
