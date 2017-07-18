@@ -99,6 +99,7 @@ Show all trips for the logged in user ordered by most recent first
 
 #### Response 
 
+```
 {
     "total": 276,
     "offset": 0,
