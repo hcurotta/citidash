@@ -37,19 +37,6 @@ module CitiDash
       }
     end
 
-    def config 
-      config = YAML.load_file(File.join(root,'config','database.yml')) 
-[env] 
-      # I like to use logger to track queries 
-      config['logger'] = Logger.new(File.join(root,'log',"sequel_# 
-{env}.log")) 
-      config 
-    end 
-    def connect 
-      Sequel.connect(config) 
-    end 
-
-
     # configure :development, :staging do
     #   database.loggers << Logger.new(STDOUT)
     # end

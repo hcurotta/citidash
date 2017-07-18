@@ -79,7 +79,7 @@ module CitiDash
         format_query_json_response(query, request) do |results|
           results.map do |result|
             {
-              id: result[:id],
+              id: result[:trip_id],
               duration_in_seconds: result[:duration_in_seconds],
               user: {
                 id: result[:user_id],

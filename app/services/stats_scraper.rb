@@ -30,7 +30,8 @@ module CitiDash
         end
 
         # Parse distance travelled into plain miles string
-        distance = distance_string.split(" ")[0].to_i
+        puts distance_string
+        distance = distance_string.split("\u00A0miles")[0].gsub(",","").to_i
 
         statistics.update({
           trip_count: trip_count,

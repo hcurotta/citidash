@@ -27,7 +27,8 @@ module CitiDash
           formatted_start_date = start_date.strftime("%m/%d/%Y")
           formatted_end_date = end_date.strftime("%m/%d/%Y")
           export_url = "https://member.citibikenyc.com/profile/trips/#{@user.citibike_id}/print?edTripsPrint[startDate]=#{formatted_start_date}&edTripsPrint[endDate]=#{formatted_end_date}"
-            
+          puts export_url
+          
           page = agent.get(export_url)
 
           trip_items = page.search("div.ed-table__item_trip")
@@ -43,6 +44,8 @@ module CitiDash
             
             destination_station = Station.find(name: trip_destination)
             destination_station = Station.create(name: trip_destination, inactive: true) if destination_station.nil?
+
+            next if trip_start_time == "-" || trip_end_time == "-" || trip_origin == "-" || trip_destination == "-"
 
             started_at = DateTime.strptime(trip_start_time + " EST", "%m/%d/%Y %I:%M:%S %p %z").utc
             ended_at = DateTime.strptime(trip_end_time + " EST", "%m/%d/%Y %I:%M:%S %p %z").utc

@@ -29,11 +29,11 @@ module CitiDash
           order by trip_count desc
         SQL
         
-        query = DB[query_string, user_id]
+        DB[query_string, user_id]
       end
       
       def self.most_common_routes
-        query = DB[%{
+        query_string = <<-SQL 
           SELECT 
             t.route_id,
             os.id AS origin_id,
@@ -51,27 +51,13 @@ module CitiDash
           group by t.route_id, os.name, ds.name, os.id, ds.id
           order by trip_count desc
         }]
+        SQL
 
-        # Paginate.paginate_and_format_query(query, page[:offset], page[:limit]) do |results|
-        #   results.map do |result|
-        #     {
-        #       id: result[:route_id],
-        #       trip_count: result[:trip_count],
-        #       origin: {
-        #         id: result[:origin_id],
-        #         name: result[:origin_name]
-        #       },
-        #       destination: {
-        #         id: result[:destination_id],
-        #         name: result[:destination_name]
-        #       }
-        #     }
-        #   end
-        # end
+        DB[query_string]
       end
 
       def self.fastest_trips_for_route(route_id)
-        query = DB[%{
+        query_string = <<-SQL
           SELECT 
               r.id, 
               os.id AS origin_id,
@@ -93,14 +79,17 @@ module CitiDash
           WHERE
               r.id = ?
           ORDER BY t.duration_in_seconds ASC
-          }, route_id]
+          SQL
+
+          DB[query_string, route_id]
       end
 
       def self.fastest_users_for_route(route_id)
-        query = DB[%{
+        query_string = <<-SQL
           SELECT 
               DISTINCT ON (u.id) u.id as user_id, 
               r.id, 
+              t.id as trip_id,
               os.id AS origin_id,
               os.name AS origin_name,
               ds.id as destination_id,
@@ -121,11 +110,13 @@ module CitiDash
           WHERE
               r.id = ?
           ORDER BY u.id, t.duration_in_seconds ASC
-        }, route_id]
+        SQL
+
+        DB[query_string, route_id]
       end
 
       def self.yellow_jerseys_for_user(user_id)
-        query = DB[%{
+        query_string = <<-SQL
           SELECT 
             r.id, 
             u.id as user_id,
@@ -146,11 +137,13 @@ module CitiDash
           WHERE
             u.id = ?
           GROUP BY r.id, u.id, os.id, os.name, ds.id, ds.name
-          }, user_id]       
+          SQL
+
+          DB[query_string, user_id]       
       end
 
       def self.yellow_jersey_for_route(route_id)
-        query = DB[%{
+        query_string = <<-SQL
           SELECT 
             r.id, 
             u.id as user_id,
@@ -164,7 +157,8 @@ module CitiDash
           GROUP BY r.id, u.id
           HAVING
             r.id = ?
-        }, route_id].first
+        SQL
+        DB[query_string, route_id].first
       end
     end
   end
