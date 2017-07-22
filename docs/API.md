@@ -286,7 +286,7 @@ All user stats. Defaults to be ordered by trip count.
 
 | Param | Value | Required |
 | --- | --- | --- |
-| order_by | trip_count, total_distance or total_duration | x |
+| order_by | trip_count, total_distance or total_duration | no |
 
 
 #### Request
