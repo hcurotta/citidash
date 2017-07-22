@@ -2,7 +2,7 @@ module CitiDash
   module Routes
     class TripRoutes < Base
       use JwtAuth
-
+      
       get '/routes' do
         query = Route.eager(:origin, :destination)
         format_query_json_response(query, request) do |routes|

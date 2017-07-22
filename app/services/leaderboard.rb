@@ -4,8 +4,16 @@ module CitiDash
   module Services
     class Leaderboard
       def self.statistics(order_by)
-        order_by = order_by || :trip_count
-        Statistics.eager(:user).order(order_by)
+        order_by_map = {
+          nil => :trip_count,
+          "trip_count" => :trip_count,
+          "total_duraton" => :duration_in_seconds,
+          "total_distance" => :distance_travelled,
+        }
+        order_by = order_by_map[order_by]
+        query = Statistics.eager(:user)
+        query = query.reverse(order_by.to_sym) if order_by
+        query
       end
 
       def self.most_common_routes_for(user_id)
