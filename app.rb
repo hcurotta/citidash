@@ -71,8 +71,8 @@ include CitiDash::Services
 
 DB = Sequel.connect(CitiDash::App.database, :max_connections => 10, :logger => Logger.new('log/db.log'))
 
-DB = Sequel.connect(CitiDash::App.database, {
-  :user=>ENV['PGPASSWORD'], 
-  :password=>ENV['PGUSER'], 
+HC = Sequel.connect(CitiDash::App.database, {
+  :user=>ENV['PGUSER'], 
+  :password=>ENV['PGPASSWORD'], 
   :logger => Logger.new('log/db.log')
 })
