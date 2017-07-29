@@ -55,7 +55,7 @@ module CitiDash
 
     Dir['config/initializers/*.rb'].sort.each { |file| require file }
 
-    use Rack::Deflater
+    # use Rack::Deflater
 
     # Other routes:
     use Routes::Authentication

@@ -3,6 +3,7 @@ module CitiDash
     class Authentication < Base
 
       post '/login' do
+        puts params
         authenticator = Authenticator.new(params[:email], params[:password])
         user = authenticator.authenticate_user
         if user 

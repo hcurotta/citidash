@@ -4,10 +4,18 @@
         use JwtAuth
 
         get '/profile' do
+          stats = current_user.statistics
+
           profile = {
             first_name: current_user.first_name,
             last_name: current_user.last_name,
-            name: current_user.short_name
+            name: current_user.short_name,
+            stats: {
+              trip_count: stats.trip_count,
+              total_duration: stats.total_duration_in_seconds,
+              total_distance: stats.distance_travelled,
+              yellow_jerseys: Leaderboard.yellow_jerseys_for_user(current_user.id).count
+            }
           }
 
           json_result_wrapper(profile, request)

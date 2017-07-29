@@ -4,7 +4,7 @@ module CitiDash
       attr_reader :agent
 
       def initialize(email, password)
-        @email = email
+        @email = email.downcase
         @password = password
       end
 
