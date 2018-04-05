@@ -381,7 +381,7 @@ Create a pending friend request between the logged-in user and another user.
 ```
 
 ### Accept Friendship
-Accept a pending friend request. Status changes from 'pending' to 'approved'. 
+Accept a pending friend request. Status changes from 'pending' to 'active'. 
 
 #### Request
 
