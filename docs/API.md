@@ -220,8 +220,8 @@ Show all routes for a user.
 | Param | Value | Required | Default |
 | --- | --- | --- | --- |
 | order_by | `trip_count`, `most_recent` | no | `trip_count` |
-| start_date | ISO 8601 format date | no | |
-| end_date | ISO 8601 format date | no | |
+| start_date | ISO 8601 format date | no | all time |
+| end_date | ISO 8601 format date | no | all time |
 
 #### Response 
 
@@ -261,8 +261,8 @@ Show all trips for the logged in user ordered by most recent first
 
 | Param | Value | Required | Default |
 | --- | --- | --- | --- |
-| start_date | ISO 8601 format date | no | null |
-| end_date | ISO 8601 format date | no | null |
+| start_date | ISO 8601 format date | no | all time |
+| end_date | ISO 8601 format date | no | all time |
 
 #### Response 
 
@@ -493,8 +493,8 @@ All users who have completed trips on a route. Can be scoped by date range.
 | --- | --- | --- | --- |
 | order_by | `most_recent`, `most_trips` or `fastest_trip` | no | `fastest_trip` |
 | friends_only | `true` or `false`  | no | `false` |
-| start_date | ISO 8601 format date | no | |
-| end_date | ISO 8601 format date | no | |
+| start_date | ISO 8601 format date | no | all time |
+| end_date | ISO 8601 format date | no | all time |
 
 #### Response 
 
@@ -528,8 +528,8 @@ All completed trips for a route.
 | --- | --- | --- | --- |
 | order_by | `most_recent`, `fastest_trip` | no | `fastest_trip` |
 | friends_only | `true` or `false`  | no | `false` |
-| start_date | ISO 8601 format date | no | |
-| end_date | ISO 8601 format date | no | |
+| start_date | ISO 8601 format date | no | all time |
+| end_date | ISO 8601 format date | no | all time |
 
 #### Response 
 
