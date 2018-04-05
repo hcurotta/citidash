@@ -8,41 +8,41 @@ DockDash is an HTTP API accessible at [https://api.dockdash.racing/v1/](https://
 
 ```
 ## Authentication
-POST	/register
-POST	/login
+POST  /register
+POST  /login
 
 ## Search/View User Profiles
-GET		/user
-GET		/users
-GET 	/users/:id
-GET 	/users/:id/routes
-GET 	/users/:id/trips
-GET		/users/:id/friendships
+GET   /user
+GET   /users
+GET   /users/:id
+GET   /users/:id/routes
+GET   /users/:id/trips
+GET   /users/:id/friendships
 
 ## Request/Accept/Destroy Friendships
-POST 	/friendships
-PUT		/friendships/:id
-DELETE	/friendships/:id
+POST  /friendships
+PUT   /friendships/:id
+DELETE  /friendships/:id
 
 ## Route Details and Leaderboards
-GET 	/routes
-GET 	/routes/:id
-GET 	/routes/:id/users
-GET 	/routes/:id/trips
+GET   /routes
+GET   /routes/:id
+GET   /routes/:id/users
+GET   /routes/:id/trips
 
 ## Trip Details and Leaderboards
-GET 	/trips
-GET 	/trips/:id
+GET   /trips
+GET   /trips/:id
 
 ## Overall Stats Leaderboard
-GET 	/stats
+GET   /stats
 
 ## Notifications
-GET		/notifications
-PUT		/notifications/:id
+GET   /notifications
+PUT   /notifications/:id
 
 ## Other
-POST	/refresh_data
+POST  /refresh_data
 
 ```
 
@@ -65,11 +65,11 @@ Create a new user and retrieve a valid auth_token.
 
 ```
 {
-    "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoxLCJl
-    "user": {
-        "id": 1,
-        "name": "Harry C."
-    }
+  "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoxLCJl
+  "user": {
+    "id": 1,
+    "name": "Harry C."
+  }
 }
 ```
 
@@ -97,11 +97,11 @@ Retrieve a valid auth_token for an existing user.
 
 ```
 {
-    "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoxLCJl
-    "user": {
-        "id": 1,
-        "name": "Harry C."
-    }
+  "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoxLCJl
+  "user": {
+    "id": 1,
+    "name": "Harry C."
+  }
 }
 ```
 
@@ -129,17 +129,17 @@ Return a list of users matching a query, e.g. name/email
 
 ```
 {
-    "total": 1,
-    "offset": 0,
-    "limit": 100,
-    "data": [
-        {
-            "id": 1,
-	        "first_name": "Harry",
-	        "last_name": "Curotta",
-	        "name": "Harry C."
-        },
-    ],
+  "total": 1,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 1,
+      "first_name": "Harry",
+      "last_name": "Curotta",
+      "name": "Harry C."
+    },
+  ],
 }
 ```
 
@@ -158,56 +158,55 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
 
 ```
 {
-	"data": {
-		"first_name": "Harry",
-		"last_name": "Curotta",
-		"name": "Harry C.",
-		"stats" {
-			"trip_count": 276,
-			"total_duration": 200380,
-			"total_distance": 415,
-		},
-		"latest_trips": [
-			{
-				"id": 1,
-				"started_at": "2016-10-03T13:23:56.000+01:00",
-				"ended_at": "2016-10-03T13:30:17.000+01:00",
-				"route": {
-					"id": 656,
-					"origin": {
-						"id": 1,
-						"name": "E 4 St & 2 Ave"
-						"lat": -73.99392888,
-						"lng": 40.76727216,
-					},
-					"destination": {
-						"id": 2,
-						"name": "E 13 St & Avenue A"
-						"lat": -73.99392888,
-						"lng": 40.76727216,
-					},
-				},
-			},		
-		],
-		"favourite_routes": [
-			{
-				"id": 656,
-				"trip_count": 13,
-				"origin": {
-					"id": 1,
-					"name": "E 4 St & 2 Ave"
-					"lat": -73.99392888,
-					"lng": 40.76727216,
-				},
-				"destination": {
-					"id": 2,
-					"name": "E 13 St & Avenue A"
-					"lat": -73.99392888,
-					"lng": 40.76727216,
-				},
-			},
-		]
-	},
+  "id": 1,
+  "first_name": "Harry",
+  "last_name": "Curotta",
+  "name": "Harry C.",
+  "stats" {
+    "trip_count": 276,
+    "total_duration": 200380,
+    "total_distance": 415,
+  },
+  "latest_trips": [
+    {
+      "id": 1,
+      "started_at": "2016-10-03T13:23:56.000+01:00",
+      "ended_at": "2016-10-03T13:30:17.000+01:00",
+      "route": {
+        "id": 656,
+        "origin": {
+          "id": 1,
+          "name": "E 4 St & 2 Ave"
+          "lat": -73.99392888,
+          "lng": 40.76727216,
+        },
+        "destination": {
+          "id": 2,
+          "name": "E 13 St & Avenue A"
+          "lat": -73.99392888,
+          "lng": 40.76727216,
+        },
+      },
+    },    
+  ],
+  "favourite_routes": [
+    {
+      "id": 656,
+      "trip_count": 13,
+      "origin": {
+        "id": 1,
+        "name": "E 4 St & 2 Ave"
+        "lat": -73.99392888,
+        "lng": 40.76727216,
+      },
+      "destination": {
+        "id": 2,
+        "name": "E 13 St & Avenue A"
+        "lat": -73.99392888,
+        "lng": 40.76727216,
+      },
+    },
+  ]
 }
 ```
 
@@ -228,28 +227,28 @@ Show all routes for a user.
 
 ```
 {
-	"total": 1,
-	"offset": 0,
-	"limit": 100,
-	"data": [
-		{
-			"id": 656,
-			"trip_count": 13,
-			"last_trip_ended_at": "2016-10-03T13:30:17.000+01:00",
-			"origin": {
-				"id": 1,
-				"name": "E 4 St & 2 Ave"
-				"lat": -73.99392888,
-				"lng": 40.76727216,
-			},
-			"destination": {
-				"id": 2,
-				"name": "E 13 St & Avenue A"
-				"lat": -73.99392888,
-				"lng": 40.76727216,
-			},
-		},
-	],
+  "total": 1,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 656,
+      "trip_count": 13,
+      "last_trip_ended_at": "2016-10-03T13:30:17.000+01:00",
+      "origin": {
+        "id": 1,
+        "name": "E 4 St & 2 Ave"
+        "lat": -73.99392888,
+        "lng": 40.76727216,
+      },
+      "destination": {
+        "id": 2,
+        "name": "E 13 St & Avenue A"
+        "lat": -73.99392888,
+        "lng": 40.76727216,
+      },
+    },
+  ],
 }
 ```
 
@@ -269,32 +268,32 @@ Show all trips for the logged in user ordered by most recent first
 
 ```
 {
-	"total": 1,
-	"offset": 0,
-	"limit": 100,
-	"data": [
-		{
-			"id": 1,
-			"started_at": "2016-10-03T13:23:56.000+01:00",
-			"ended_at": "2016-10-03T13:30:17.000+01:00",
-			"duration_in_seconds": 204,
-			"route": {
-				"id": 656,
-				"origin": {
-					"id": 1,
-					"name": "E 4 St & 2 Ave"
-					"lat": -73.99392888,
-					"lng": 40.76727216,
-				},
-				"destination": {
-					"id": 2,
-					"name": "E 13 St & Avenue A"
-					"lat": -73.99392888,
-					"lng": 40.76727216,
-				},
-			},
-		},
-	],
+  "total": 1,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 1,
+      "started_at": "2016-10-03T13:23:56.000+01:00",
+      "ended_at": "2016-10-03T13:30:17.000+01:00",
+      "duration_in_seconds": 204,
+      "route": {
+        "id": 656,
+        "origin": {
+          "id": 1,
+          "name": "E 4 St & 2 Ave"
+          "lat": -73.99392888,
+          "lng": 40.76727216,
+        },
+        "destination": {
+          "id": 2,
+          "name": "E 13 St & Avenue A"
+          "lat": -73.99392888,
+          "lng": 40.76727216,
+        },
+      },
+    },
+  ],
 }
 ```
 
@@ -314,21 +313,21 @@ List a given user's friends.
 
 ```
 {
-    "total": 1,
-    "offset": 0,
-    "limit": 100,
-    "data": [
-		{
-			"id": 1,
-			"status": "pending",
-			"user": {
-				"id": 2,
-				"first_name": "John",
-				"last_name": "Mair",
-				"name": "John M.",
-    		},
-		},
-	],
+  "total": 1,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 1,
+      "status": "pending",
+      "user": {
+        "id": 2,
+        "first_name": "John",
+        "last_name": "Mair",
+        "name": "John M.",
+      },
+    },
+  ],
 }
 ```
 
@@ -350,14 +349,14 @@ Create a pending friend request between the logged-in user and another user.
 
 ```
 {
-	"id": 1,
-	"status": "pending",
-	"user": {
-		"id": 2,
-		"first_name": "John",
-		"last_name": "Mair",
-		"name": "John M.",
-	},
+  "id": 1,
+  "status": "pending",
+  "user": {
+    "id": 2,
+    "first_name": "John",
+    "last_name": "Mair",
+    "name": "John M.",
+  },
 }
 ```
 
@@ -373,14 +372,14 @@ Accept a pending friend request. Status changes from 'pending' to 'approved'.
 
 ```
 {
-	"id": 1,
-	"status": "active",
-	"user": {
-		"id": 2,
-		"first_name": "John",
-		"last_name": "Mair",
-		"name": "John M.",
-	},
+  "id": 1,
+  "status": "active",
+  "user": {
+    "id": 2,
+    "first_name": "John",
+    "last_name": "Mair",
+    "name": "John M.",
+  },
 }
 ```
 
@@ -417,28 +416,28 @@ They can be ordered by total trip count descending, or by routes with the most r
 
 ```
 {
-	"total": 1,
-	"offset": 0,
-	"limit": 100,
-	"data": [
-		{
-			"id": 1,
-			"trip_count": 13,
-			"last_trip_ended_at": "2016-10-03T13:30:17.000+01:00",
-			"origin": {
-				"id": 1,
-				"name": "E 4 St & 2 Ave"
-				"lat": -73.99392888,
-				"lng": 40.76727216,
-			},
-			"destination": {
-				"id": 2,
-				"name": "E 13 St & Avenue A"
-				"lat": -73.99392888,
-				"lng": 40.76727216,
-			},
-		},
-	],
+  "total": 1,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 1,
+      "trip_count": 13,
+      "last_trip_ended_at": "2016-10-03T13:30:17.000+01:00",
+      "origin": {
+        "id": 1,
+        "name": "E 4 St & 2 Ave"
+        "lat": -73.99392888,
+        "lng": 40.76727216,
+      },
+      "destination": {
+        "id": 2,
+        "name": "E 13 St & Avenue A"
+        "lat": -73.99392888,
+        "lng": 40.76727216,
+      },
+    },
+  ],
 }
 ```
 
@@ -454,34 +453,32 @@ Show details of an individual route, including the total number of trips and fas
 
 ```
 {
-    "data": {
-		"id": 1,
-		"origin": {
-			"id": 1,
-			"name": "E 4 St & 2 Ave"
-			"lat": -73.99392888,
-			"lng": 40.76727216,
-		},
-		"destination": {
-			"id": 2,
-			"name": "E 13 St & Avenue A"
-			"lat": -73.99392888,
-			"lng": 40.76727216,
-		},
-		"trip_count": 27,
-		"fastest_trip": {
-			"id": 1,
-			"started_at": "2016-10-03T13:23:56.000+01:00",
-			"ended_at": "2016-10-03T13:30:17.000+01:00",
-			"duration_in_seconds": 262,
-			"user": {
-				"id": 2,
-				"first_name": "John",
-				"last_name": "Mair",
-				"name": "John M.",
-			},
-		},
+  "id": 1,
+  "origin": {
+    "id": 1,
+    "name": "E 4 St & 2 Ave"
+    "lat": -73.99392888,
+    "lng": 40.76727216,
+  },
+  "destination": {
+    "id": 2,
+    "name": "E 13 St & Avenue A"
+    "lat": -73.99392888,
+    "lng": 40.76727216,
+  },
+  "trip_count": 27,
+  "fastest_trip": {
+    "id": 1,
+    "started_at": "2016-10-03T13:23:56.000+01:00",
+    "ended_at": "2016-10-03T13:30:17.000+01:00",
+    "duration_in_seconds": 262,
+    "user": {
+      "id": 2,
+      "first_name": "John",
+      "last_name": "Mair",
+      "name": "John M.",
     },
+  },
 }
 ```
 
@@ -503,20 +500,20 @@ All users who have completed trips on a route. Can be scoped by date range.
 
 ```
 {
-	"total": 1,
-	"offset": 0,
-	"limit": 100,
-	"data": [
-		{
-			"id": 1,
-			"first_name": "Harry",
-			"last_name": "Curotta",
-			"name": "Harry C.",
-			"fastest_trip_duration_in_seconds": 262,
-			"trip_count": 20,
-			"last_trip_ended_at": "2016-10-03T13:23:56.000+01:00",
-		}
-	],
+  "total": 1,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 1,
+      "first_name": "Harry",
+      "last_name": "Curotta",
+      "name": "Harry C.",
+      "fastest_trip_duration_in_seconds": 262,
+      "trip_count": 20,
+      "last_trip_ended_at": "2016-10-03T13:23:56.000+01:00",
+    }
+  ],
 }
 ```
 
@@ -538,23 +535,23 @@ All completed trips for a route.
 
 ```
 {
-	"total": 1,
-	"offset": 0,
-	"limit": 100,
-	"data": [
-		{
-			"id": 1,
-			"started_at": "2016-10-03T13:23:56.000+01:00",
-			"ended_at": "2016-10-03T13:30:17.000+01:00",
-			"user": {
-				"id": 2,
-				"first_name": "John",
-				"last_name": "Mair",
-				"name": "John M.",
-			},
-			duration_in_seconds: 503,
-		},
-	],
+  "total": 1,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 1,
+      "started_at": "2016-10-03T13:23:56.000+01:00",
+      "ended_at": "2016-10-03T13:30:17.000+01:00",
+      "user": {
+        "id": 2,
+        "first_name": "John",
+        "last_name": "Mair",
+        "name": "John M.",
+      },
+      duration_in_seconds: 503,
+    },
+  ],
 }
 ```
 
@@ -576,38 +573,38 @@ All completed trips.
 
 ```
 {
-	"total": 1,
-	"offset": 0,
-	"limit": 100,
-	"data": [
-		{
-			"id": 1,
-			"started_at": "2016-10-03T13:23:56.000+01:00",
-			"ended_at": "2016-10-03T13:30:17.000+01:00",
-			"duration_in_seconds": 240,
-			"user": {
-				"id": 1,
-				"first_name": "Harry",
-				"last_name": "Curotta",
-				"name": "Harry C.",
-			},
-			"route": {
-				"id": 656,
-				"origin": {
-					"id": 1,
-					"name": "E 4 St & 2 Ave"
-					"lat": -73.99392888,
-					"lng": 40.76727216,
-				},
-				"destination": {
-					"id": 2,
-					"name": "E 13 St & Avenue A"
-					"lat": -73.99392888,
-					"lng": 40.76727216,
-				},
-			},
-		},		
-	],
+  "total": 1,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 1,
+      "started_at": "2016-10-03T13:23:56.000+01:00",
+      "ended_at": "2016-10-03T13:30:17.000+01:00",
+      "duration_in_seconds": 240,
+      "user": {
+        "id": 1,
+        "first_name": "Harry",
+        "last_name": "Curotta",
+        "name": "Harry C.",
+      },
+      "route": {
+        "id": 656,
+        "origin": {
+          "id": 1,
+          "name": "E 4 St & 2 Ave"
+          "lat": -73.99392888,
+          "lng": 40.76727216,
+        },
+        "destination": {
+          "id": 2,
+          "name": "E 13 St & Avenue A"
+          "lat": -73.99392888,
+          "lng": 40.76727216,
+        },
+      },
+    },    
+  ],
 }
 ```
 
@@ -622,36 +619,31 @@ Show specific trip details.
 
 ```
 {
-	"total": 1,
-	"offset": 0,
-	"limit": 100,
-	"data": {
-		"id": 1,
-		"started_at": "2016-10-03T13:23:56.000+01:00",
-		"ended_at": "2016-10-03T13:30:17.000+01:00",
-		"duration_in_seconds": 240,
-		"user": {
-			"id": 1,
-			"first_name": "Harry",
-			"last_name": "Curotta",
-			"name": "Harry C.",
-		},
-		"route": {
-			"id": 656,
-			"origin": {
-				"id": 1,
-				"name": "E 4 St & 2 Ave"
-				"lat": -73.99392888,
-				"lng": 40.76727216,
-			},
-			"destination": {
-				"id": 2,
-				"name": "E 13 St & Avenue A"
-				"lat": -73.99392888,
-				"lng": 40.76727216,
-			},
-		},
-	},
+  "id": 1,
+  "started_at": "2016-10-03T13:23:56.000+01:00",
+  "ended_at": "2016-10-03T13:30:17.000+01:00",
+  "duration_in_seconds": 240,
+  "user": {
+    "id": 1,
+    "first_name": "Harry",
+    "last_name": "Curotta",
+    "name": "Harry C.",
+  },
+  "route": {
+    "id": 656,
+    "origin": {
+      "id": 1,
+      "name": "E 4 St & 2 Ave"
+      "lat": -73.99392888,
+      "lng": 40.76727216,
+    },
+    "destination": {
+      "id": 2,
+      "name": "E 13 St & Avenue A"
+      "lat": -73.99392888,
+      "lng": 40.76727216,
+    },
+  },
 }
 ```
 
@@ -675,31 +667,31 @@ All user stats. Defaults to be ordered by trip count.
 
 ```
 {
-    "total": 2,
-    "offset": 0,
-    "limit": 100,
-    "data": [
-        {
-            "id": 2,
-            "trip_count": 1569,
-            "total_duration": 942975,
-            "total_distance": 1953,
-            "user": {
-                "id": 2,
-                "name": "John M."
-            }
-        },
-        {
-            "id": 1,
-            "trip_count": 276,
-            "total_duration": 200380,
-            "total_distance": 415,
-            "user": {
-                "id": 1,
-                "name": "Harry C."
-            }
-        }
-    ],
+  "total": 2,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 2,
+      "trip_count": 1569,
+      "total_duration": 942975,
+      "total_distance": 1953,
+      "user": {
+          "id": 2,
+          "name": "John M.",
+      },
+    },
+    {
+      "id": 1,
+      "trip_count": 276,
+      "total_duration": 200380,
+      "total_distance": 415,
+      "user": {
+        "id": 1,
+        "name": "Harry C.",
+      },
+    }
+  ],
 }
 ```
 
@@ -716,23 +708,23 @@ List all notifications for the logged in user by most recent first.
 
 ```
 {
-    "total": 2,
-    "offset": 0,
-    "limit": 100,
-    "data": [
-        {
-            "id": 2,
-            "type": "friend_request",
-            "text": "Harry C. added you as a friend.",
-            "unread": "true",
-        },
-        {
-            "id": 1,
-            "type": "beaten_time",
-            "text": "John M. beat your time.",
-            "unread": "false",
-        }
-    ],
+  "total": 2,
+  "offset": 0,
+  "limit": 100,
+  "data": [
+    {
+      "id": 2,
+      "type": "friend_request",
+      "text": "Harry C. added you as a friend.",
+      "unread": "true",
+    },
+    {
+      "id": 1,
+      "type": "beaten_time",
+      "text": "John M. beat your time.",
+      "unread": "false",
+    }
+  ],
 }
 ```
 
@@ -748,15 +740,10 @@ Acknowledge a notification, changing it's unread status to false.
 
 ```
 {
-    "total": 1,
-    "offset": 0,
-    "limit": 100,
-    "data": {
-        "id": 2,
-        "type": "friend_request",
-        "text": "Harry C. added you as a friend.",
-        "unread": "false",
-    },
+  "id": 2,
+  "type": "friend_request",
+  "text": "Harry C. added you as a friend.",
+  "unread": "false",
 }
 ```
 
