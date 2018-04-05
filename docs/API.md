@@ -46,8 +46,8 @@ POST	/refresh_data
 
 ```
 
-#Authentication
-## Registering
+## Authentication
+### Registering
 
 Create a new user and retrieve a valid auth_token.
 
@@ -80,7 +80,7 @@ Authorization: Bearer AbCdeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkI
 ```
 
 
-## Logging In
+### Logging In
 
 Retrieve a valid auth_token for an existing user.
 
@@ -111,9 +111,9 @@ The `auth_token` returned here must be included in all subsequent API requests. 
 Authorization: Bearer AbCdeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoxLCJleHAiOjE1MDAyNDA2MDMsImlhdCI6MTUwMDIzNzAwM319.pDARrli20g9LVPqtuFJv5js3eBomInYgXndXQUJ43T8Ef123456
 ```
 
-# User Profiles
+## User Profiles
 
-## Search for Users
+### Search for Users
 Return a list of users matching a query, e.g. name/email
 
 #### Request
@@ -143,7 +143,7 @@ Return a list of users matching a query, e.g. name/email
 }
 ```
 
-## User Details
+### User Details
 Retrieve user including top level stats and 5 favourite routes and 5 latest trips. 
 
 Favourite routes are routes with most trips, ordered by number of trips descending. 
@@ -211,7 +211,7 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
 }
 ```
 
-## User Routes
+### User Routes
 Show all routes for a user.
 
 #### Request
@@ -253,7 +253,7 @@ Show all routes for a user.
 }
 ```
 
-## User Trips
+### User Trips
 Show all trips for the logged in user ordered by most recent first
 
 #### Request
@@ -299,7 +299,7 @@ Show all trips for the logged in user ordered by most recent first
 ```
 
 
-## User Friendships
+### User Friendships
 List a given user's friends.
 
 #### Request
@@ -332,8 +332,8 @@ List a given user's friends.
 }
 ```
 
-# Managing Friendships
-## Request Friendship
+## Managing Friendships
+### Request Friendship
 Create a pending friend request between the logged-in user and another user. 
 
 #### Request
@@ -361,7 +361,7 @@ Create a pending friend request between the logged-in user and another user.
 }
 ```
 
-## Accept Friendship
+### Accept Friendship
 Accept a pending friend request. Status changes from 'pending' to 'approved'. 
 
 #### Request
@@ -384,7 +384,7 @@ Accept a pending friend request. Status changes from 'pending' to 'approved'.
 }
 ```
 
-## Reject/Destroy Friendship
+### Reject/Destroy Friendship
 
 Delete a friendship regardless of status.
 
@@ -396,8 +396,8 @@ Delete a friendship regardless of status.
 
 `200 OK`
 
-#Route Details
-## All Routes
+## Route Details
+### All Routes
 Show all routes across the whole system. A date range and friends_only flag can be provided to scope results. 
 
 They can be ordered by total trip count descending, or by routes with the most recent trips. 
@@ -443,7 +443,7 @@ They can be ordered by total trip count descending, or by routes with the most r
 ```
 
 
-## Show Route
+### Show Route
 Show details of an individual route, including the total number of trips and fastest trip.
 
 #### Request
@@ -485,7 +485,7 @@ Show details of an individual route, including the total number of trips and fas
 }
 ```
 
-## Show Users of Route  
+### Show Users of Route  
 All users who have completed trips on a route. Can be scoped by date range.
 
 #### Request
@@ -520,7 +520,7 @@ All users who have completed trips on a route. Can be scoped by date range.
 }
 ```
 
-## Show Trips for Route  
+### Show Trips for Route  
 All completed trips for a route.
 
 #### Request
@@ -558,8 +558,8 @@ All completed trips for a route.
 }
 ```
 
-# Trip Details
-## List all Trips
+## Trip Details
+### List all Trips
 All completed trips.
 
 #### Request
@@ -611,7 +611,7 @@ All completed trips.
 }
 ```
 
-## Show Trip
+### Show Trip
 Show specific trip details.
 
 #### Request
@@ -655,7 +655,8 @@ Show specific trip details.
 }
 ```
 
-## Stats Leaderboard
+## Overall Leaderboard
+### Stats
 
 All user stats. Defaults to be ordered by trip count.
 
@@ -702,8 +703,8 @@ All user stats. Defaults to be ordered by trip count.
 }
 ```
 
-# Notifications
-## List all Notifications
+## Notifications
+### List all Notifications
 
 List all notifications for the logged in user by most recent first.
 
@@ -735,7 +736,7 @@ List all notifications for the logged in user by most recent first.
 }
 ```
 
-## Acknowledge Notification
+### Acknowledge Notification
 
 Acknowledge a notification, changing it's unread status to false. 
 
@@ -759,7 +760,8 @@ Acknowledge a notification, changing it's unread status to false.
 }
 ```
 
-## Load/Refresh User Data from Citibike
+## Other
+### Load/Refresh User Data from Citibike
 
 Refresh data from citibike for current logged-in user. 
 
