@@ -146,6 +146,8 @@ Return a list of users matching a query, e.g. name/email
 ### User Details
 Retrieve user including top level stats and 5 favourite routes and 5 latest trips. 
 
+Routes in common is a list of 5 routes where both the logged-in user and the retrieved user have completed trips. These are ordered by the number of trips (of the retrieved user) descending. 
+
 Favourite routes are routes with most trips, ordered by number of trips descending. 
 
 #### Request
@@ -206,7 +208,25 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
         "lng": 40.76727216,
       },
     },
-  ]
+  ],
+  "routes_in_common": [
+    {
+      "id": 656,
+      "trip_count": 13,
+      "origin": {
+        "id": 1,
+        "name": "E 4 St & 2 Ave"
+        "lat": -73.99392888,
+        "lng": 40.76727216,
+      },
+      "destination": {
+        "id": 2,
+        "name": "E 13 St & Avenue A"
+        "lat": -73.99392888,
+        "lng": 40.76727216,
+      },
+    },
+  ],
 }
 ```
 
