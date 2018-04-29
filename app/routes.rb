@@ -6,6 +6,7 @@ module CitiDash
     autoload :Authentication, 'app/routes/authentication'
     autoload :Users, 'app/routes/users'
     autoload :Stats, 'app/routes/stats'
-    autoload :TripRoutes, 'app/routes/trip_routes'
+    autoload :Courses, 'app/routes/courses'
+    autoload :Trips, 'app/routes/trips'
   end
 end

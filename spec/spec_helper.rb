@@ -11,9 +11,9 @@ require 'database_cleaner'
 
 RSpec.configure do |config|
   include Rack::Test::Methods
-  config.extend VCR::RSpec::Macros
-
+  
   config.order = 'random'
+  DatabaseCleaner[:sequel, {:connection => Sequel.connect(ENV.fetch('DATABASE_URL'))}]
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
@@ -40,4 +40,5 @@ end
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
+  config.configure_rspec_metadata!
 end

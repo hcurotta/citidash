@@ -1,6 +1,8 @@
 module CitiDash
   module Services
     class TripScraper
+      include ScraperHelper
+
       def initialize(user)
         @user = user
       end
@@ -12,7 +14,10 @@ module CitiDash
 
       def scrape_trips(agent, hard_refresh=false)
         # The page only loads in 16 month increments
-        end_date = Time.now
+        end_date = @user.statistics.last_trip_ended_at || Time.now
+
+        # Last scraped is the last trip we detected.
+        # By looking at this we can just get the new trips vs all time every time. 
         last_scraped = @user.trips_dataset.order(Sequel.desc(:ended_at)).first.try(:ended_at)
 
         begin 
@@ -27,7 +32,6 @@ module CitiDash
           formatted_start_date = start_date.strftime("%m/%d/%Y")
           formatted_end_date = end_date.strftime("%m/%d/%Y")
           export_url = "https://member.citibikenyc.com/profile/trips/#{@user.citibike_id}/print?edTripsPrint[startDate]=#{formatted_start_date}&edTripsPrint[endDate]=#{formatted_end_date}"
-          puts export_url
           
           page = agent.get(export_url)
 
@@ -47,8 +51,8 @@ module CitiDash
 
             next if trip_start_time == "-" || trip_end_time == "-" || trip_origin == "-" || trip_destination == "-"
 
-            started_at = DateTime.strptime(trip_start_time + " EST", "%m/%d/%Y %I:%M:%S %p %z").utc
-            ended_at = DateTime.strptime(trip_end_time + " EST", "%m/%d/%Y %I:%M:%S %p %z").utc
+            started_at = parse_short_datetime(trip_start_time)
+            ended_at = parse_short_datetime(trip_end_time)
             duration = ended_at.to_i - started_at.to_i
 
             Trip.find_or_create({

@@ -1,6 +1,8 @@
 module CitiDash
   module Services
     class StatsScraper
+      include ScraperHelper
+
       def initialize(user)
         @user = user
       end
@@ -21,6 +23,8 @@ module CitiDash
         trip_count = page.search("div.ed-panel__info__value_member-stats-for-period_lifetime")[0].text.to_i
         duration_string = page.parser.xpath("//div[.='Total usage time']/following-sibling::div[1]")[0].text
         distance_string = page.parser.xpath("//div[.='Distance traveled (estimated)']/following-sibling::div[1]")[0].text
+        last_trip_ended_at_string = page.search("div.ed-panel__info__value__part_end-date")[0].text
+
 
         # Parse duration string ("x hours y minutes z seconds") into seconds
         duration_in_seconds = 0
@@ -30,13 +34,16 @@ module CitiDash
         end
 
         # Parse distance travelled into plain miles string
-        puts distance_string
         distance = distance_string.split("\u00A0miles")[0].gsub(",","").to_i
+
+        # Get last trip date
+        last_trip_ended_at = parse_long_datetime(last_trip_ended_at_string)        
 
         statistics.update({
           trip_count: trip_count,
           total_duration_in_seconds: duration_in_seconds,
-          distance_travelled: distance
+          distance_travelled: distance,
+          last_trip_ended_at: last_trip_ended_at
         })
       end
     end

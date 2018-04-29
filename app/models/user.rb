@@ -43,11 +43,20 @@ module CitiDash
         JWT.encode(payload, ENV['JWT_SECRET'], 'HS256')
       end
 
-      def refresh_data
-        StatsScraper.new(self).load_stats
-        TripScraper.new(self).load_trips
+      def refresh_data!
+        agent = Authenticator.get_authenticated_agent(self)
+        StatsScraper.new(self).scrape_stats(agent)
+        TripScraper.new(self).scrape_stats(agent)
       end
 
+      def to_api(nested_objects={})
+        {
+          id: self.id,
+          first_name: self.first_name,
+          last_name: self.last_name,
+          name: self.short_name
+        }.merge(nested_objects)
+      end
     end
   end
 end

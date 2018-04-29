@@ -6,17 +6,19 @@ DockDash is an HTTP API accessible at [https://api.dockdash.racing/v1/](https://
 
 ## Summary of Endpoints
 
+✓ = Implemented
+
 ```
 ## Authentication
-POST  /register
-POST  /login
+✓ POST  /register
+✓ POST  /login
 
 ## Search/View User Profiles
-GET   /user
-GET   /users
-GET   /users/:id
-GET   /users/:id/routes
-GET   /users/:id/trips
+✓ GET   /user
+✓ GET   /users
+✓ GET   /users/:id
+✓ GET   /users/:id/routes
+✓ GET   /users/:id/trips
 GET   /users/:id/friendships
 
 ## Request/Accept/Destroy Friendships
@@ -25,14 +27,14 @@ PUT   /friendships/:id
 DELETE  /friendships/:id
 
 ## Route Details and Leaderboards
-GET   /routes
-GET   /routes/:id
-GET   /routes/:id/users
-GET   /routes/:id/trips
+✓ GET   /routes
+✓ GET   /routes/:id
+✓ GET   /routes/:id/users
+✓ GET   /routes/:id/trips
 
 ## Trip Details and Leaderboards
-GET   /trips
-GET   /trips/:id
+✓ GET   /trips
+✓ GET   /trips/:id
 
 ## Overall Stats Leaderboard
 GET   /stats
@@ -180,13 +182,13 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
           "id": 1,
           "name": "E 4 St & 2 Ave"
           "lat": -73.99392888,
-          "lng": 40.76727216,
+          "lon": 40.76727216,
         },
         "destination": {
           "id": 2,
           "name": "E 13 St & Avenue A"
           "lat": -73.99392888,
-          "lng": 40.76727216,
+          "lon": 40.76727216,
         },
       },
     },    
@@ -199,13 +201,13 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
         "id": 1,
         "name": "E 4 St & 2 Ave"
         "lat": -73.99392888,
-        "lng": 40.76727216,
+        "lon": 40.76727216,
       },
       "destination": {
         "id": 2,
         "name": "E 13 St & Avenue A"
         "lat": -73.99392888,
-        "lng": 40.76727216,
+        "lon": 40.76727216,
       },
     },
   ],
@@ -217,13 +219,13 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
         "id": 1,
         "name": "E 4 St & 2 Ave"
         "lat": -73.99392888,
-        "lng": 40.76727216,
+        "lon": 40.76727216,
       },
       "destination": {
         "id": 2,
         "name": "E 13 St & Avenue A"
         "lat": -73.99392888,
-        "lng": 40.76727216,
+        "lon": 40.76727216,
       },
     },
   ],
@@ -239,7 +241,7 @@ Show all routes for a user.
 
 | Param | Value | Required | Default |
 | --- | --- | --- | --- |
-| order_by | `trip_count`, `most_recent` | no | `trip_count` |
+| order_by | `trip_count`, `last_trip_ended_at` | no | `trip_count` |
 | start_date | ISO 8601 format date | no | all time |
 | end_date | ISO 8601 format date | no | all time |
 
@@ -259,13 +261,13 @@ Show all routes for a user.
         "id": 1,
         "name": "E 4 St & 2 Ave"
         "lat": -73.99392888,
-        "lng": 40.76727216,
+        "lon": 40.76727216,
       },
       "destination": {
         "id": 2,
         "name": "E 13 St & Avenue A"
         "lat": -73.99392888,
-        "lng": 40.76727216,
+        "lon": 40.76727216,
       },
     },
   ],
@@ -303,13 +305,13 @@ Show all trips for the logged in user ordered by most recent first
           "id": 1,
           "name": "E 4 St & 2 Ave"
           "lat": -73.99392888,
-          "lng": 40.76727216,
+          "lon": 40.76727216,
         },
         "destination": {
           "id": 2,
           "name": "E 13 St & Avenue A"
           "lat": -73.99392888,
-          "lng": 40.76727216,
+          "lon": 40.76727216,
         },
       },
     },
@@ -427,7 +429,7 @@ They can be ordered by total trip count descending, or by routes with the most r
 
 | Param | Value | Required | Default |
 | --- | --- | --- | --- |
-| order_by | `trip_count`, `most_recent` | no | `trip_count` |
+| order_by | `trip_count`, `last_trip_ended_at` | no | `trip_count` |
 | start_date | ISO 8601 format date | no | all time |
 | end_date | ISO 8601 format date | no | all time |
 | friends_only | `true` or `false`  | no | `false` |
@@ -448,13 +450,13 @@ They can be ordered by total trip count descending, or by routes with the most r
         "id": 1,
         "name": "E 4 St & 2 Ave"
         "lat": -73.99392888,
-        "lng": 40.76727216,
+        "lon": 40.76727216,
       },
       "destination": {
         "id": 2,
         "name": "E 13 St & Avenue A"
         "lat": -73.99392888,
-        "lng": 40.76727216,
+        "lon": 40.76727216,
       },
     },
   ],
@@ -478,13 +480,13 @@ Show details of an individual route, including the total number of trips and fas
     "id": 1,
     "name": "E 4 St & 2 Ave"
     "lat": -73.99392888,
-    "lng": 40.76727216,
+    "lon": 40.76727216,
   },
   "destination": {
     "id": 2,
     "name": "E 13 St & Avenue A"
     "lat": -73.99392888,
-    "lng": 40.76727216,
+    "lon": 40.76727216,
   },
   "trip_count": 27,
   "fastest_trip": {
@@ -546,7 +548,7 @@ All completed trips for a route.
 
 | Param | Value | Required | Default |
 | --- | --- | --- | --- |
-| order_by | `most_recent`, `fastest_trip` | no | `fastest_trip` |
+| order_by | `last_trip_ended_at`, `fastest_trip` | no | `fastest_trip` |
 | friends_only | `true` or `false`  | no | `false` |
 | start_date | ISO 8601 format date | no | all time |
 | end_date | ISO 8601 format date | no | all time |
@@ -614,13 +616,13 @@ All completed trips.
           "id": 1,
           "name": "E 4 St & 2 Ave"
           "lat": -73.99392888,
-          "lng": 40.76727216,
+          "lon": 40.76727216,
         },
         "destination": {
           "id": 2,
           "name": "E 13 St & Avenue A"
           "lat": -73.99392888,
-          "lng": 40.76727216,
+          "lon": 40.76727216,
         },
       },
     },    
@@ -655,13 +657,13 @@ Show specific trip details.
       "id": 1,
       "name": "E 4 St & 2 Ave"
       "lat": -73.99392888,
-      "lng": 40.76727216,
+      "lon": 40.76727216,
     },
     "destination": {
       "id": 2,
       "name": "E 13 St & Avenue A"
       "lat": -73.99392888,
-      "lng": 40.76727216,
+      "lon": 40.76727216,
     },
   },
 }

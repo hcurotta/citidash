@@ -23,8 +23,12 @@ module CitiDash
             t.route_id,
             os.id AS origin_id,
             os.name AS origin_name,
+            os.lat AS origin_lat,
+            os.lon AS origin_lon,
             ds.id as destination_id,
             ds.name as destination_name, 
+            ds.lat AS destination_lat,
+            ds.lon AS destination_lon,
             count(r.id) as trip_count
           FROM trips AS t
           RIGHT JOIN routes as r

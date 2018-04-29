@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 RSpec.describe StatsScraper, :type => :service do
-  context 'when scraping stats' do
-    use_vcr_cassette "stats"
+  context 'when scraping stats', vcr: true do
 
     before(:each) do 
       @user = User.create({
-        :email=>"joebloggs@gmail.com",
-        :password=>"testpassword",
+        :email=>"hcurotta@gmail.com",
+        :password=>"DockDash1",
         :first_name=>"ABC",
         :last_name=>"XYZ",
         :citibike_id=>"NU7S9DAK-1"

@@ -27,15 +27,15 @@ http_interactions:
       Content-Type:
       - application/json
       Last-Modified:
-      - Sun, 22 Apr 2018 07:36:12 GMT
+      - Sun, 22 Apr 2018 07:36:26 GMT
       Content-Length:
       - '231935'
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 22 Apr 2018 07:36:12 GMT
+      - Sun, 22 Apr 2018 07:36:27 GMT
       X-Varnish:
-      - '1077027009'
+      - '1077027052'
       Age:
       - '0'
       Via:
@@ -44,7 +44,7 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"last_updated":1524382564,"ttl":10,"data":{"stations":[{"station_id":"72","name":"W
+      string: '{"last_updated":1524382586,"ttl":10,"data":{"stations":[{"station_id":"72","name":"W
         52 St & 11 Ave","short_name":"6926.01","lat":40.76727216,"lon":-73.99392888,"region_id":71,"rental_methods":["CREDITCARD","KEY"],"capacity":39,"rental_url":"http://app.citibikenyc.com/S6Lr/IBV092JufD?station_id=72","eightd_has_key_dispenser":false},{"station_id":"79","name":"Franklin
         St & W Broadway","short_name":"5430.08","lat":40.71911552,"lon":-74.00666661,"region_id":71,"rental_methods":["CREDITCARD","KEY"],"capacity":33,"rental_url":"http://app.citibikenyc.com/S6Lr/IBV092JufD?station_id=79","eightd_has_key_dispenser":false},{"station_id":"82","name":"St
         James Pl & Pearl St","short_name":"5167.06","lat":40.71117416,"lon":-74.00016545,"region_id":71,"rental_methods":["CREDITCARD","KEY"],"capacity":27,"rental_url":"http://app.citibikenyc.com/S6Lr/IBV092JufD?station_id=82","eightd_has_key_dispenser":false},{"station_id":"83","name":"Atlantic
@@ -856,5 +856,5 @@ http_interactions:
         43 St & 5 Ave","short_name":"6551.03","lat":40.754120810779256,"lon":-73.98025184869766,"rental_methods":["CREDITCARD","KEY"],"capacity":38,"rental_url":"http://app.citibikenyc.com/S6Lr/IBV092JufD?station_id=3680","eightd_has_key_dispenser":false},{"station_id":"3681","name":"Grand
         St","short_name":"JC102","lat":40.71517767732029,"lon":-74.03768330812454,"region_id":70,"rental_methods":["CREDITCARD","KEY"],"capacity":18,"rental_url":"http://app.citibikenyc.com/S6Lr/IBV092JufD?station_id=3681","eightd_has_key_dispenser":false}]}}'
     http_version: 
-  recorded_at: Sun, 22 Apr 2018 07:36:13 GMT
+  recorded_at: Sun, 22 Apr 2018 07:36:27 GMT
 recorded_with: VCR 4.0.0

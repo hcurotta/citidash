@@ -3,78 +3,149 @@
       class Users < Base
         use JwtAuth
 
-        get '/profile' do
-          stats = current_user.statistics
+        def user_response(user)
+          stats = user.statistics
+          latest_trips = Trip.where(user: user).eager(:origin, :destination, :user).order(Sequel.desc(:ended_at)).limit(5)
+          
+          favourite_routes = Leaderboard.most_common_routes_for(user.id).limit(5).to_a
 
-          profile = {
-            first_name: current_user.first_name,
-            last_name: current_user.last_name,
-            name: current_user.short_name,
-            stats: {
-              trip_count: stats.trip_count,
-              total_duration: stats.total_duration_in_seconds,
-              total_distance: stats.distance_travelled,
-              yellow_jerseys: Leaderboard.yellow_jerseys_for_user(current_user.id).count
-            }
-          }
-
-          json_result_wrapper(profile, request)
-        end
-
-        get '/profile/stats' do 
-          stats = current_user.statistics
-          result = {
-            trip_count: stats.trip_count,
-            total_duration: stats.total_duration_in_seconds,
-            total_distance: stats.distance_travelled,
-            yellow_jerseys: Leaderboard.yellow_jerseys_for_user(current_user.id).count
-          }
-          json_result_wrapper(result, request)
-        end
-
-        get '/profile/trips' do 
-          query = Trip.where(user: current_user).eager(:origin, :destination, :user).order(Sequel.desc(:ended_at))
-          format_query_json_response(query, request) do |trips|
-            trips.map do |trip|
+          if user != current_user 
+            routes_in_common = RouteQueries.routes_in_common(user, current_user).limit(5).to_a
+            routes_in_common.map! do |route|
               {
-                id: trip.id,
-                started_at: trip.started_at,
-                ended_at: trip.ended_at,
-                origin: {
-                  id: trip.origin.id,
-                  name: trip.origin.name
+                "id": route[:route_id],
+                "trip_count": route[:trip_count],
+                "origin": {
+                  "id": route[:origin_id],
+                  "name": route[:origin_name],
+                  "lat": route[:origin_lat],
+                  "lng": route[:origin_lon],
                 },
-                destination: {
-                  id: trip.destination.id,
-                  name: trip.destination.name
-                }
+                "destination": {
+                  "id": route[:destination_id],
+                  "name": route[:destination_name],
+                  "lat": route[:destination_lat],
+                  "lng": route[:destination_lon],
+                },
+              }
+            end
+          else
+            routes_in_common = []
+          end
+
+          favourite_routes.map! do |route|
+            {
+              "id": route[:route_id],
+              "trip_count": route[:trip_count],
+              "origin": {
+                "id": route[:origin_id],
+                "name": route[:origin_name],
+                "lat": route[:origin_lat],
+                "lng": route[:origin_lon],
+              },
+              "destination": {
+                "id": route[:destination_id],
+                "name": route[:destination_name],
+                "lat": route[:destination_lat],
+                "lng": route[:destination_lon],
+              },
+            }
+          end
+
+          user.to_api({
+            stats: stats.to_api,
+            latest_trips: Trip.to_api(latest_trips),
+            favourite_routes: favourite_routes,
+            routes_in_common: routes_in_common
+          }).to_json
+        end
+
+        get '/user' do
+          user_response(current_user)
+        end
+
+        get '/users/:id' do
+          user = User.find(id: params["id"])
+          user_response(user)
+        end
+
+
+        get '/users' do 
+          users = UserQueries.find_user(params["query"])
+
+          format_query_json_response(users, request) do |users|
+            users.map do |user|
+              {
+                id: user[:id],
+                first_name: user[:first_name],
+                last_name: user[:last_name],
+                name: user[:short_name]
               }
             end
           end
         end
 
-        get '/profile/routes' do
-          query = Leaderboard.most_common_routes_for(current_user.id)
+        get '/users/:id/routes' do
+          query = RouteQueries.routes_for(params["id"], params)
+
           format_query_json_response(query, request) do |results|
             results.map do |result|
               {
                 id: result[:route_id],
                 trip_count: result[:trip_count],
+                last_trip_ended_at: result[:last_trip_ended_at],
                 origin: {
                   id: result[:origin_id],
-                  name: result[:origin_name]
+                  name: result[:origin_name],
+                  lat: result[:origin_lat],
+                  lon: result[:origin_lon]
                 },
                 destination: {
                   id: result[:destination_id],
-                  name: result[:destination_name]
+                  name: result[:destination_name],
+                  lat: result[:destination_lat],
+                  lon: result[:destination_lon]
                 }
               }
             end
           end
         end
 
-        post '/profile/refresh_data' do
-          current_user.refresh_data
+
+        get '/users/:id/trips' do
+          query = TripQueries.trips_for(params["id"], params)
+          
+          format_query_json_response(query, request) do |results|
+            results.map do |result|
+              {
+                id: result[:trip_id],
+                started_at: result[:started_at],
+                ended_at: result[:ended_at],
+                duration_in_seconds: result[:duration_in_seconds],
+                route: {
+                  id: result[:route_id],
+                  origin: {
+                    id: result[:origin_id],
+                    name: result[:origin_name],
+                    lat: result[:origin_lat],
+                    lon: result[:origin_lon]
+                  },
+                  destination: {
+                    id: result[:destination_id],
+                    name: result[:destination_name],
+                    lat: result[:destination_lat],
+                    lon: result[:destination_lon]
+                  }
+                }
+              }
+            end
+          end
+        end
+
+        ###### Below is Unfinished
+
+        post '/user/refresh_data' do
+          current_user.refresh_data!
           current_user.statistics.to_json
         end
       end
