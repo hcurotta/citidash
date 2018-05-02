@@ -22,26 +22,22 @@ module CitiDash
         form["_username"] = @email
         form["_password"] = @password
         page = form.submit
-        if page.uri.to_s == "https://member.citibikenyc.com/profile/"
-          user = User.find(email: @email)
-          user.update(password: @password) if user
-          return true
-        else 
-          return false
-        end
+        page.uri.to_s == "https://member.citibikenyc.com/profile/"
       end
 
       def register(accepts_terms)
         if accepts_terms && login
           user = User.find_or_create(citibike_id: citibike_account_details[:citibike_id])
-          user.update({
+          user.set({
             email: @email,
-            password: @password,
             first_name: citibike_account_details[:first_name],
             last_name: citibike_account_details[:last_name],
             short_name: "#{citibike_account_details[:first_name]} #{citibike_account_details[:last_name][0]}.",
             terms_accepted_at: Time.now
           })
+
+          user.password = @password
+          user.save
 
           return user
         end
@@ -52,13 +48,15 @@ module CitiDash
           user = User.find(citibike_id: citibike_account_details[:citibike_id])
 
           if user
-            user.update({
+            user.set({
               email: @email,
-              password: @password,
               first_name: citibike_account_details[:first_name],
               last_name: citibike_account_details[:last_name],
               short_name: "#{citibike_account_details[:first_name]} #{citibike_account_details[:last_name][0]}."
             })
+
+            user.password = @password
+            user.save
 
             return user
           end
