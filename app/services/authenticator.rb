@@ -22,7 +22,13 @@ module CitiDash
         form["_username"] = @email
         form["_password"] = @password
         page = form.submit
-        return page.uri.to_s == "https://member.citibikenyc.com/profile/"
+        if page.uri.to_s == "https://member.citibikenyc.com/profile/"
+          user = User.find_by(email: @email)
+          user.update(password: @password) if user
+          return true
+        else 
+          return false
+        end
       end
 
       def register(accepts_terms)
