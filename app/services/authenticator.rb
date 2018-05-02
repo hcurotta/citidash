@@ -23,7 +23,7 @@ module CitiDash
         form["_password"] = @password
         page = form.submit
         if page.uri.to_s == "https://member.citibikenyc.com/profile/"
-          user = User.find_by(email: @email)
+          user = User.find(email: @email)
           user.update(password: @password) if user
           return true
         else 
