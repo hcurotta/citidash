@@ -20,7 +20,7 @@ module CitiDash
         # By looking at this we can just get the new trips vs all time every time. 
         last_scraped = @user.trips_dataset.order(Sequel.desc(:ended_at)).first.try(:ended_at)
 
-        begin 
+        begin
           trip_items = []
           start_date = end_date - 16.months
 

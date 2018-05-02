@@ -11,5 +11,8 @@ module CitiDash
     autoload :RouteQueries, 'app/services/route_queries'
     autoload :UserQueries, 'app/services/user_queries'
     autoload :TripQueries, 'app/services/trip_queries'
+
+    # Maps
+    autoload :RouteMapGenerator, 'app/services/route_map_generator'
   end
 end

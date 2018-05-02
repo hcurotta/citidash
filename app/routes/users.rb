@@ -5,10 +5,7 @@
 
         def user_response(user)
           stats = user.statistics
-          latest_trips = Trip.where(user: user).eager(:origin, :destination, :user).order(Sequel.desc(:ended_at)).limit(5)
           
-          favourite_routes = Leaderboard.most_common_routes_for(user.id).limit(5).to_a
-
           if user != current_user 
             routes_in_common = RouteQueries.routes_in_common(user, current_user).limit(5).to_a
             routes_in_common.map! do |route|
@@ -33,6 +30,7 @@
             routes_in_common = []
           end
 
+          favourite_routes = RouteQueries.routes_for(user.id, {"order_by" => "trip_count"}).limit(5).to_a
           favourite_routes.map! do |route|
             {
               "id": route[:route_id],
@@ -52,9 +50,34 @@
             }
           end
 
+          latest_trips = TripQueries.trips_for(user.id).limit(5).to_a
+          latest_trips.map! do |result|
+            {
+              id: result[:trip_id],
+              started_at: result[:started_at],
+              ended_at: result[:ended_at],
+              duration_in_seconds: result[:duration_in_seconds],
+              route: {
+                id: result[:route_id],
+                origin: {
+                  id: result[:origin_id],
+                  name: result[:origin_name],
+                  lat: result[:origin_lat],
+                  lon: result[:origin_lon]
+                },
+                destination: {
+                  id: result[:destination_id],
+                  name: result[:destination_name],
+                  lat: result[:destination_lat],
+                  lon: result[:destination_lon]
+                }
+              }
+            }
+          end
+
           user.to_api({
             stats: stats.to_api,
-            latest_trips: Trip.to_api(latest_trips),
+            latest_trips: latest_trips,
             favourite_routes: favourite_routes,
             routes_in_common: routes_in_common
           }).to_json

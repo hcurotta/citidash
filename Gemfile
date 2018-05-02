@@ -10,6 +10,7 @@ gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-contrib', github: 'maccman/sinatra-contrib'
 gem 'mechanize'
 gem 'jwt', '~> 1.5'
+gem 'mapbox-sdk'
 
 # DB
 gem 'sequel'

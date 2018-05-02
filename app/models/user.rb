@@ -46,7 +46,7 @@ module CitiDash
       def refresh_data!
         agent = Authenticator.get_authenticated_agent(self)
         StatsScraper.new(self).scrape_stats(agent)
-        TripScraper.new(self).scrape_stats(agent)
+        TripScraper.new(self).scrape_trips(agent)
       end
 
       def to_api(nested_objects={})
