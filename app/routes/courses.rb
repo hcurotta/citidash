@@ -11,6 +11,7 @@ module CitiDash
           results.map do |result|
             {
               id: result[:route_id],
+              map_url: RouteMapGenerator.new(result[:route_id]).map_url,
               trip_count: result[:trip_count],
               last_trip_ended_at: result[:last_trip_ended_at],
               origin: {
