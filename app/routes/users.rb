@@ -94,7 +94,7 @@
 
 
         get '/users' do 
-          users = UserQueries.find_user(params["query"])
+          users = UserQueries.find_user(params["query"], current_user.id)
 
           format_query_json_response(users, request) do |users|
             users.map do |user|
@@ -102,7 +102,11 @@
                 id: user[:id],
                 first_name: user[:first_name],
                 last_name: user[:last_name],
-                name: user[:short_name]
+                name: user[:short_name],
+                friendship: {
+                  id: user[:friendship_id],
+                  status: user[:friendship_status]
+                }
               }
             end
           end
@@ -159,6 +163,29 @@
                     lat: result[:destination_lat],
                     lon: result[:destination_lon]
                   }
+                }
+              }
+            end
+          end
+        end
+
+        get '/users/:id/friendships' do
+          friendships = Friendship.where(user_id: params["id"]).eager(:friend)
+
+          if params["status"]
+            friendships = friendships.where(status: params["status"])
+          end
+
+          format_query_json_response(friendships, request) do |friendships|
+            friendships.map do |friendship|
+              {
+                id: friendship.id,
+                status: friendship.status,
+                user: {
+                  id: friendship.friend.id,
+                  first_name: friendship.friend.first_name,
+                  last_name: friendship.friend.last_name,
+                  name: friendship.friend.short_name                  
                 }
               }
             end

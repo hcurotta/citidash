@@ -1,21 +1,26 @@
 module CitiDash
   module Services
     class UserQueries
-      def self.find_user(query)
+      def self.find_user(query, exclude_user_id=nil)
         query_string = <<-SQL 
-          SELECT 
-            id,
+        SELECT 
+            u.id,
             first_name,
             last_name,
             short_name,
-            email
-          FROM 
-            users
-          WHERE
-            concat_ws(' ', first_name, last_name, email) ILIKE ? 
+            email,
+            f.id as friendship_id,
+            f.status as friendship_status
+        FROM 
+            users AS u
+        LEFT OUTER JOIN friendships AS f
+            on f.friend_id = u.id
+        WHERE
+            NOT u.id = ?
+            AND concat_ws(' ', first_name, last_name, email) ILIKE ? 
         SQL
 
-        DB[query_string, "%#{query.squish}%"]
+        DB[query_string, exclude_user_id, "%#{query.squish}%"]
       end
 
       # TODO Implement friends only filter

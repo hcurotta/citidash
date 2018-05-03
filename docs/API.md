@@ -7,6 +7,7 @@ DockDash is an HTTP API accessible at [https://api.dockdash.racing/v1/](https://
 ## Summary of Endpoints
 
 ✓ = Implemented
+* Friend based filtering is not yet implemented for any list views. 
 
 ```
 ## Authentication
@@ -19,12 +20,12 @@ DockDash is an HTTP API accessible at [https://api.dockdash.racing/v1/](https://
 ✓ GET   /users/:id
 ✓ GET   /users/:id/routes
 ✓ GET   /users/:id/trips
-GET   /users/:id/friendships
+✓ GET   /users/:id/friendships
 
 ## Request/Accept/Destroy Friendships
-POST  /friendships
-PUT   /friendships/:id
-DELETE  /friendships/:id
+✓ POST  /friendships
+✓ PUT   /friendships/:id
+✓ DELETE  /friendships/:id
 
 ## Route Details and Leaderboards
 ✓ GET   /routes

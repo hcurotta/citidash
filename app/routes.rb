@@ -8,5 +8,6 @@ module CitiDash
     autoload :Stats, 'app/routes/stats'
     autoload :Courses, 'app/routes/courses'
     autoload :Trips, 'app/routes/trips'
+    autoload :Friendships, 'app/routes/friendships'
   end
 end

@@ -17,7 +17,7 @@ module CitiDash
         origin_coords = "#{@origin.lon},#{@origin.lat}"
         destination_coords = "#{@destination.lon},#{@destination.lat}"
 
-        url = "https://api.mapbox.com/directions/v5/mapbox/cycling/#{origin_coords};#{destination_coords}?geometries=polyline&access_token=#{MAPBOX_API_TOKEN}"
+        url = "https://api.mapbox.com/directions/v5/mapbox/walking/#{origin_coords};#{destination_coords}?geometries=polyline&access_token=#{MAPBOX_API_TOKEN}"
         
         uri = URI(url)
         response = Net::HTTP.get(uri)

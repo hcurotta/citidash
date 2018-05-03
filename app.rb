@@ -63,6 +63,7 @@ module CitiDash
     use Routes::Stats
     use Routes::Courses
     use Routes::Trips
+    use Routes::Friendships
   end
 end
 

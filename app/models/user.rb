@@ -7,6 +7,8 @@ module CitiDash
       one_to_one :statistics
       one_to_many :routes
       one_to_many :trips
+      one_to_many :friendships
+      many_to_many :friends, left_key: :user_id, right_key: :friend_id, join_table: :friendships, class: :User
 
       def before_save 
         if @password
