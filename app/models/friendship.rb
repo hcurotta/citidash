@@ -13,8 +13,8 @@ module CitiDash
 
       def after_create
         # Create corresponding friendship (insert skips callbacks)
-        self.update(status: "pending")
-        Friendship.insert(user_id: self.friend_id, friend_id: self.user_id, status: "requested")
+        self.update(status: "requested")
+        Friendship.insert(user_id: self.friend_id, friend_id: self.user_id, status: "pending")
         super
       end
 
@@ -29,7 +29,7 @@ module CitiDash
       end
 
       def accept!
-        if self.status == "requested"
+        if self.status == "pending"
           self.update(status: "accepted")
           self.corresponding_friendship.update(status: "accepted")
         end
