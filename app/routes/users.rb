@@ -218,7 +218,8 @@
         end
 
         post '/refresh_data' do
-          current_user.refresh_data!
+          # temporarily disabled during dev
+          # current_user.refresh_data!
           status 200
         end
       end

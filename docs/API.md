@@ -140,7 +140,11 @@ Return a list of users matching a query, e.g. name/email
       "id": 1,
       "first_name": "Harry",
       "last_name": "Curotta",
-      "name": "Harry C."
+      "name": "Harry C.",
+      "friendship": {
+          "id": 5,
+          "status": "requested",
+      },
     },
   ],
 }
@@ -191,6 +195,11 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
           "lat": -73.99392888,
           "lon": 40.76727216,
         },
+        "maps": {
+          "thumb": "https://dockdash.s3.amazonaws.com/production/maps/8210_thumb_v20180511.png",
+          "small": "https://dockdash.s3.amazonaws.com/production/maps/8210_small_v20180511.png",
+          "large": "https://dockdash.s3.amazonaws.com/production/maps/8210_large_v20180511.png"
+        },
       },
     },    
   ],
@@ -210,6 +219,11 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
         "lat": -73.99392888,
         "lon": 40.76727216,
       },
+      "maps": {
+        "thumb": "https://dockdash.s3.amazonaws.com/production/maps/8210_thumb_v20180511.png",
+        "small": "https://dockdash.s3.amazonaws.com/production/maps/8210_small_v20180511.png",
+        "large": "https://dockdash.s3.amazonaws.com/production/maps/8210_large_v20180511.png"
+      },
     },
   ],
   "routes_in_common": [
@@ -227,6 +241,11 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
         "name": "E 13 St & Avenue A"
         "lat": -73.99392888,
         "lon": 40.76727216,
+      },
+      "maps": {
+        "thumb": "https://dockdash.s3.amazonaws.com/production/maps/8210_thumb_v20180511.png",
+        "small": "https://dockdash.s3.amazonaws.com/production/maps/8210_small_v20180511.png",
+        "large": "https://dockdash.s3.amazonaws.com/production/maps/8210_large_v20180511.png"
       },
     },
   ],
@@ -269,6 +288,11 @@ Show all routes for a user.
         "name": "E 13 St & Avenue A"
         "lat": -73.99392888,
         "lon": 40.76727216,
+      },
+      "maps": {
+        "thumb": "https://dockdash.s3.amazonaws.com/production/maps/8210_thumb_v20180511.png",
+        "small": "https://dockdash.s3.amazonaws.com/production/maps/8210_small_v20180511.png",
+        "large": "https://dockdash.s3.amazonaws.com/production/maps/8210_large_v20180511.png"
       },
     },
   ],
@@ -313,6 +337,11 @@ Show all trips for the logged in user ordered by most recent first
           "name": "E 13 St & Avenue A"
           "lat": -73.99392888,
           "lon": 40.76727216,
+        },
+        "maps": {
+          "thumb": "https://dockdash.s3.amazonaws.com/production/maps/8210_thumb_v20180511.png",
+          "small": "https://dockdash.s3.amazonaws.com/production/maps/8210_small_v20180511.png",
+          "large": "https://dockdash.s3.amazonaws.com/production/maps/8210_large_v20180511.png"
         },
       },
     },
@@ -373,7 +402,7 @@ Create a pending friend request between the logged-in user and another user.
 ```
 {
   "id": 1,
-  "status": "pending",
+  "status": "requested",
   "user": {
     "id": 2,
     "first_name": "John",
@@ -385,6 +414,8 @@ Create a pending friend request between the logged-in user and another user.
 
 ### Accept Friendship
 Accept a pending friend request. Status changes from 'pending' to 'active'. 
+
+Note: Only friendships with 'pending' status may be accepted. Friendships with a 'requested' status are awaiting the other person accepting.
 
 #### Request
 
@@ -488,6 +519,11 @@ Show details of an individual route, including the total number of trips and fas
     "name": "E 13 St & Avenue A"
     "lat": -73.99392888,
     "lon": 40.76727216,
+  },
+  "maps": {
+    "thumb": "https://dockdash.s3.amazonaws.com/production/maps/8210_thumb_v20180511.png",
+    "small": "https://dockdash.s3.amazonaws.com/production/maps/8210_small_v20180511.png",
+    "large": "https://dockdash.s3.amazonaws.com/production/maps/8210_large_v20180511.png"
   },
   "trip_count": 27,
   "fastest_trip": {
@@ -625,6 +661,11 @@ All completed trips.
           "lat": -73.99392888,
           "lon": 40.76727216,
         },
+        "maps": {
+          "thumb": "https://dockdash.s3.amazonaws.com/production/maps/8210_thumb_v20180511.png",
+          "small": "https://dockdash.s3.amazonaws.com/production/maps/8210_small_v20180511.png",
+          "large": "https://dockdash.s3.amazonaws.com/production/maps/8210_large_v20180511.png"
+        },
       },
     },    
   ],
@@ -665,6 +706,11 @@ Show specific trip details.
       "name": "E 13 St & Avenue A"
       "lat": -73.99392888,
       "lon": 40.76727216,
+    },
+    "maps": {
+      "thumb": "https://dockdash.s3.amazonaws.com/production/maps/8210_thumb_v20180511.png",
+      "small": "https://dockdash.s3.amazonaws.com/production/maps/8210_small_v20180511.png",
+      "large": "https://dockdash.s3.amazonaws.com/production/maps/8210_large_v20180511.png"
     },
   },
 }
