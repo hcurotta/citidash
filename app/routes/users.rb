@@ -8,21 +8,21 @@
           
           if user != current_user 
             routes_in_common = RouteQueries.routes_in_common(user, current_user).limit(5).to_a
-            routes_in_common.map! do |route|
+            routes_in_common.map! do |result|
               {
-                id: route[:route_id],
-                trip_count: route[:trip_count],
+                id: result[:route_id],
+                trip_count: result[:trip_count],
                 origin: {
-                  id: route[:origin_id],
-                  name: route[:origin_name],
-                  lat: route[:origin_lat],
-                  lng: route[:origin_lon],
+                  id: result[:origin_id],
+                  name: result[:origin_name],
+                  lat: result[:origin_lat],
+                  lng: result[:origin_lon],
                 },
                 destination: {
-                  id: route[:destination_id],
-                  name: route[:destination_name],
-                  lat: route[:destination_lat],
-                  lng: route[:destination_lon],
+                  id: result[:destination_id],
+                  name: result[:destination_name],
+                  lat: result[:destination_lat],
+                  lng: result[:destination_lon],
                 },
                 maps: {
                   thumb: result[:route_map_thumb],

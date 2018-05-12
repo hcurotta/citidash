@@ -24,7 +24,7 @@ module CitiDash
               r.map_large AS route_map_large,
               count(r.id) as trip_count, 
               max(t.ended_at) as last_at, 
-              min(t.duration_in_seconds) as fastest_time,
+              min(t.duration_in_seconds) as fastest_time
             FROM 
               trips AS t
             RIGHT JOIN routes as r
