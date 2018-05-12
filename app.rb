@@ -29,6 +29,15 @@ require 'app/helpers'
 require 'app/routes'
 require 'app/workers'
 
+if ENV['RACK_ENV'] == "production"
+  Sidekiq.configure_server do |config|
+    # config.options[:concurrency] = 5
+    config.redis = {
+      url: ENV['REDIS_URL'],
+    }
+  end
+end
+
 module CitiDash
   class App < Sinatra::Application
     configure do
