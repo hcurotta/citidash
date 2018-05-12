@@ -24,6 +24,11 @@ module CitiDash
                 name: result[:destination_name],
                 lat: result[:destination_lat],
                 lon: result[:destination_lon]
+              },
+              maps: {
+                thumb: result[:route_map_thumb],
+                small: result[:route_map_small],
+                large: result[:route_map_large]
               }
             }
           end
@@ -36,7 +41,11 @@ module CitiDash
 
         route_hash = {
           id: route.id,
-          maps: route.maps,
+          maps: {
+            thumb: route.map_thumb,
+            small: route.map_small,
+            large: route.map_large
+          },
           origin: {
             id: route.origin.id,
             name: route.origin.name,

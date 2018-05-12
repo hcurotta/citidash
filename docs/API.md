@@ -45,7 +45,7 @@ GET   /notifications
 PUT   /notifications/:id
 
 ## Other
-POST  /refresh_data
+✓ POST  /refresh_data
 
 ```
 

@@ -25,7 +25,10 @@ module CitiDash
             ds.id AS destination_id,
             ds.name AS destination_name, 
             ds.lat AS destination_lat,
-            ds.lon AS destination_lon
+            ds.lon AS destination_lon,
+            r.map_thumb AS route_map_thumb,
+            r.map_small AS route_map_small,
+            r.map_large AS route_map_large
           FROM trips AS t
           RIGHT JOIN users AS u
             ON u.id = t.user_id
@@ -37,7 +40,7 @@ module CitiDash
             ON ds.id = t.destination_id
           WHERE t.started_at >= ?
             AND t.ended_at <= ?
-          GROUP BY t.id, os.id, os.name, ds.id, ds.name, u.id
+          GROUP BY t.id, os.id, os.name, ds.id, ds.name, u.id, r.map_thumb, r.map_small, r.map_large
           ORDER BY t.ended_at desc
         SQL
 
@@ -62,7 +65,10 @@ module CitiDash
             ds.id AS destination_id,
             ds.name AS destination_name, 
             ds.lat AS destination_lat,
-            ds.lon AS destination_lon
+            ds.lon AS destination_lon,
+            r.map_thumb AS route_map_thumb,
+            r.map_small AS route_map_small,
+            r.map_large AS route_map_large
           FROM trips AS t
           RIGHT JOIN routes AS r
             ON r.id = t.route_id
@@ -73,7 +79,7 @@ module CitiDash
           WHERE t.user_id = ?
             AND t.started_at >= ?
             AND t.ended_at <= ?
-          GROUP BY t.id, os.id, os.name, ds.id, ds.name
+          GROUP BY t.id, os.id, os.name, ds.id, ds.name, r.map_thumb, r.map_small, r.map_large
           ORDER BY t.ended_at desc
         SQL
         

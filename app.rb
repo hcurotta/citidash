@@ -27,6 +27,7 @@ require 'app/models'
 require 'app/services'
 require 'app/helpers'
 require 'app/routes'
+require 'app/workers'
 
 module CitiDash
   class App < Sinatra::Application
@@ -70,11 +71,6 @@ end
 include CitiDash
 include CitiDash::Models
 include CitiDash::Services
+include CitiDash::Workers
 
 DB = Sequel.connect(CitiDash::App.database, :max_connections => 10, :logger => Logger.new('log/db.log'))
-
-HC = Sequel.connect(CitiDash::App.database, {
-  :user=>ENV['PGUSER'], 
-  :password=>ENV['PGPASSWORD'], 
-  :logger => Logger.new('log/db.log')
-})

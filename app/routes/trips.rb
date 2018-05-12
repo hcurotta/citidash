@@ -32,6 +32,11 @@ module CitiDash
                   name: result[:destination_name],
                   lat: result[:destination_lat],
                   lon: result[:destination_lon]
+                },
+                maps: {
+                  thumb: result[:route_map_thumb],
+                  small: result[:route_map_small],
+                  large: result[:route_map_large]
                 }
               }
             }
@@ -40,7 +45,7 @@ module CitiDash
       end
 
       get '/trips/:id' do
-        trip = Trip.where(id: params[:id]).eager(:user, :origin, :destination).first
+        trip = Trip.where(id: params[:id]).eager(:user, :origin, :destination, :route).first
 
         {
           id: trip.id,
@@ -66,12 +71,15 @@ module CitiDash
               name: trip.destination.name,
               lat: trip.destination.lat,
               lon: trip.destination.lon
+            },
+            maps: {
+              thumb: trip.route.map_thumb,
+              small: trip.route.map_small,
+              large: trip.route.map_large
             }
           }
         }.to_json
       end
-
-      
     end
   end
 end

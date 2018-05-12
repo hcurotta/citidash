@@ -11,6 +11,8 @@ gem 'sinatra-contrib', github: 'maccman/sinatra-contrib'
 gem 'mechanize'
 gem 'jwt', '~> 1.5'
 gem 'mapbox-sdk'
+gem 'aws-sdk-s3', '~> 1'
+gem 'sidekiq'
 
 # DB
 gem 'sequel'

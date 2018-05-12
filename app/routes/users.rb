@@ -10,20 +10,25 @@
             routes_in_common = RouteQueries.routes_in_common(user, current_user).limit(5).to_a
             routes_in_common.map! do |route|
               {
-                "id": route[:route_id],
-                "trip_count": route[:trip_count],
-                "origin": {
-                  "id": route[:origin_id],
-                  "name": route[:origin_name],
-                  "lat": route[:origin_lat],
-                  "lng": route[:origin_lon],
+                id: route[:route_id],
+                trip_count: route[:trip_count],
+                origin: {
+                  id: route[:origin_id],
+                  name: route[:origin_name],
+                  lat: route[:origin_lat],
+                  lng: route[:origin_lon],
                 },
-                "destination": {
-                  "id": route[:destination_id],
-                  "name": route[:destination_name],
-                  "lat": route[:destination_lat],
-                  "lng": route[:destination_lon],
+                destination: {
+                  id: route[:destination_id],
+                  name: route[:destination_name],
+                  lat: route[:destination_lat],
+                  lng: route[:destination_lon],
                 },
+                maps: {
+                  thumb: result[:route_map_thumb],
+                  small: result[:route_map_small],
+                  large: result[:route_map_large]
+                }
               }
             end
           else
@@ -31,22 +36,27 @@
           end
 
           favourite_routes = RouteQueries.routes_for(user.id, {"order_by" => "trip_count"}).limit(5).to_a
-          favourite_routes.map! do |route|
+          favourite_routes.map! do |result|
             {
-              "id": route[:route_id],
-              "trip_count": route[:trip_count],
-              "origin": {
-                "id": route[:origin_id],
-                "name": route[:origin_name],
-                "lat": route[:origin_lat],
-                "lng": route[:origin_lon],
+              id: result[:route_id],
+              trip_count: result[:trip_count],
+              origin: {
+                id: result[:origin_id],
+                name: result[:origin_name],
+                lat: result[:origin_lat],
+                lng: result[:origin_lon],
               },
-              "destination": {
-                "id": route[:destination_id],
-                "name": route[:destination_name],
-                "lat": route[:destination_lat],
-                "lng": route[:destination_lon],
+              destination: {
+                id: result[:destination_id],
+                name: result[:destination_name],
+                lat: result[:destination_lat],
+                lng: result[:destination_lon],
               },
+              maps: {
+                thumb: result[:route_map_thumb],
+                small: result[:route_map_small],
+                large: result[:route_map_large]
+              }
             }
           end
 
@@ -70,6 +80,11 @@
                   name: result[:destination_name],
                   lat: result[:destination_lat],
                   lon: result[:destination_lon]
+                },
+                maps: {
+                  thumb: result[:route_map_thumb],
+                  small: result[:route_map_small],
+                  large: result[:route_map_large]
                 }
               }
             }
@@ -132,6 +147,11 @@
                   name: result[:destination_name],
                   lat: result[:destination_lat],
                   lon: result[:destination_lon]
+                },
+                maps: {
+                  thumb: result[:route_map_thumb],
+                  small: result[:route_map_small],
+                  large: result[:route_map_large]
                 }
               }
             end
@@ -162,6 +182,11 @@
                     name: result[:destination_name],
                     lat: result[:destination_lat],
                     lon: result[:destination_lon]
+                  },
+                  maps: {
+                    thumb: result[:route_map_thumb],
+                    small: result[:route_map_small],
+                    large: result[:route_map_large]
                   }
                 }
               }
@@ -192,11 +217,9 @@
           end
         end
 
-        ###### Below is Unfinished
-
-        post '/user/refresh_data' do
+        post '/refresh_data' do
           current_user.refresh_data!
-          current_user.statistics.to_json
+          status 200
         end
       end
     end

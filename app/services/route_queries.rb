@@ -19,9 +19,12 @@ module CitiDash
               ds.name as destination_name, 
               ds.lat AS destination_lat,
               ds.lon AS destination_lon,
+              r.map_thumb AS route_map_thumb,
+              r.map_small AS route_map_small,
+              r.map_large AS route_map_large,
               count(r.id) as trip_count, 
               max(t.ended_at) as last_at, 
-              min(t.duration_in_seconds) as fastest_time
+              min(t.duration_in_seconds) as fastest_time,
             FROM 
               trips AS t
             RIGHT JOIN routes as r
@@ -42,7 +45,10 @@ module CitiDash
               ds.id,
               ds.name,
               ds.lat,
-              ds.lon
+              ds.lon,
+              r.map_thumb,
+              r.map_small,
+              r.map_large
             ORDER BY trip_count desc
           SQL
         
@@ -75,6 +81,9 @@ module CitiDash
             ds.name as destination_name, 
             ds.lat AS destination_lat,
             ds.lon AS destination_lon,
+            r.map_thumb AS route_map_thumb,
+            r.map_small AS route_map_small,
+            r.map_large AS route_map_large,
             count(r.id) as trip_count,
             max(t.ended_at) as last_trip_ended_at
           FROM trips AS t
@@ -88,7 +97,7 @@ module CitiDash
             t.user_id = ?
             and t.started_at >= ?
             and t.ended_at <= ?
-          group by t.route_id, os.id, os.name, ds.id, ds.name
+          group by t.route_id, os.id, os.name, ds.id, ds.name, r.map_thumb, r.map_small, r.map_large
           order by #{order_by} desc
         SQL
         
@@ -119,6 +128,9 @@ module CitiDash
             ds.name as destination_name, 
             ds.lat AS destination_lat,
             ds.lon AS destination_lon,
+            r.map_thumb AS route_map_thumb,
+            r.map_small AS route_map_small,
+            r.map_large AS route_map_large,
             count(r.id) as trip_count,
             max(t.ended_at) as last_trip_ended_at
           FROM trips AS t
@@ -131,7 +143,7 @@ module CitiDash
           WHERE 
             t.started_at >= ?
             AND t.ended_at <= ?
-          group by t.route_id, os.id, os.name, ds.id, ds.name
+          group by t.route_id, os.id, os.name, ds.id, ds.name, r.map_thumb, r.map_small, r.map_large
           order by #{order_by} desc
         SQL
         

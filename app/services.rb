@@ -13,6 +13,6 @@ module CitiDash
     autoload :TripQueries, 'app/services/trip_queries'
 
     # Maps
-    autoload :RouteMapGenerator, 'app/services/route_map_generator'
+    autoload :RouteMapper, 'app/services/route_mapper'
   end
 end

@@ -5,8 +5,12 @@ module CitiDash
       many_to_one :destination, class: :Station
       one_to_many :trips
 
-      def maps
-        @map = @map || RouteMapGenerator.new(self.id).map_url
+      def after_create
+        RouteMapperWorker.perform_async(self.id)
+      end
+
+      def active?
+        self.origin.inactive || self.destination.inactive
       end
     end
   end
