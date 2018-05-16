@@ -38,7 +38,7 @@ DockDash is an HTTP API accessible at [https://api.dockdash.racing/v1/](https://
 ✓ GET   /trips/:id
 
 ## Overall Stats Leaderboard
-GET   /stats
+✓ GET   /stats
 
 ## Notifications
 GET   /notifications
@@ -171,6 +171,10 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
   "first_name": "Harry",
   "last_name": "Curotta",
   "name": "Harry C.",
+  "friendship": {
+      "id": 5,
+      "status": "requested",
+  },
   "stats" {
     "trip_count": 276,
     "total_duration": 200380,
@@ -744,22 +748,25 @@ All user stats. Defaults to be ordered by trip count.
       "id": 2,
       "trip_count": 1569,
       "total_duration": 942975,
-      "total_distance": 1953,
+      "total_distance": "2132.0",
       "user": {
-          "id": 2,
-          "name": "John M.",
+        "id": 2,
+        "first_name": "John",
+        "last_name": "Mair",
+        "name": "John M.",
       },
     },
     {
       "id": 1,
       "trip_count": 276,
       "total_duration": 200380,
-      "total_distance": 415,
+      "total_distance": "415.1",
       "user": {
         "id": 1,
+        "first_name": "Harry",
+        "last_name": "Curotta",
         "name": "Harry C.",
       },
-    }
   ],
 }
 ```

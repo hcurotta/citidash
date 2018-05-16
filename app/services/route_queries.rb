@@ -1,9 +1,9 @@
 module CitiDash
   module Services
     class RouteQueries
-      def self.routes_in_common(user_1, user_2)
-        user_1_route_ids = user_1.trips.pluck(:route_id)
-        user_2_route_ids = user_2.trips.pluck(:route_id)
+      def self.routes_in_common(user1, user2)
+        user_1_route_ids = user1.trips.pluck(:route_id)
+        user_2_route_ids = user2.trips.pluck(:route_id)
 
         common_routes = user_1_route_ids && user_2_route_ids
 

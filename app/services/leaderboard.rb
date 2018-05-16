@@ -1,8 +1,7 @@
-# Leaderboard provides leaderboards for trips/routes/stations
-
 module CitiDash
   module Services
     class Leaderboard
+      # TODO: Implement friends only filter
       def self.all_stats(options = {})
         valid_order_by = %w(total_duration total_distance)
 
@@ -16,7 +15,7 @@ module CitiDash
 
         query_string = <<-SQL
 
-          SELECT 
+          SELECT
               COUNT(t.id) AS trip_count,
               SUM(t.duration_in_seconds) AS total_duration,
               SUM(r.distance)/1000 * 1.6 AS total_distance_real,

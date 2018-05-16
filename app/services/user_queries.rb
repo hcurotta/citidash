@@ -57,13 +57,14 @@ module CitiDash
               on t.route_id = r.id
           INNER JOIN users as u
               on t.user_id = u.id
-          WHERE
-              r.id = ?
+          WHERE r.id = ?
+            AND t.started_at >= ?
+            AND t.ended_at <= ?
           GROUP BY r.id, u.id
           ORDER BY #{order_by}
         SQL
 
-        DB[query_string, route_id]
+        DB[query_string, route_id, start_date, end_date]
       end
     end
   end

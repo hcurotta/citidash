@@ -6,10 +6,14 @@ module CitiDash
       many_to_one :user
       many_to_one :friend, class: :User, key: :friend_id
 
+      # Validations
+
       def validate
         validates_unique([:user_id, :friend_id])
         super
       end
+
+      # Callbacks
 
       def after_create
         # Create corresponding friendship (insert skips callbacks)
@@ -29,10 +33,9 @@ module CitiDash
       end
 
       def accept!
-        if status == 'pending'
-          update(status: 'accepted')
-          corresponding_friendship.update(status: 'accepted')
-        end
+        return false unless status == 'pending'
+        update(status: 'accepted')
+        corresponding_friendship.update(status: 'accepted')
       end
     end
   end
