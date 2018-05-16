@@ -7,7 +7,7 @@ module CitiDash
         {
           trip_count: trip_count,
           total_duration: total_duration_in_seconds,
-          total_distance: distance_travelled
+          total_distance: distance_travelled.to_s
         }.merge(nested_objects)
       end
     end

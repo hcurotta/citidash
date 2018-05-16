@@ -4,8 +4,6 @@ module CitiDash
       use JwtAuth
 
       def user_response(user)
-        stats = user.statistics
-
         if user != current_user
           routes_in_common = RouteQueries.routes_in_common(user, current_user).limit(5).to_a
           routes_in_common.map! do |result|
@@ -31,8 +29,16 @@ module CitiDash
               }
             }
           end
+
+          friendship = Friendship.find(user_id: current_user.id, friend_id: user.id)
+
+          friendship = {
+            id: friendship.id,
+            status: friendship.status
+          }
         else
           routes_in_common = []
+          friendship = nil
         end
 
         favourite_routes = RouteQueries.routes_for(user.id, 'order_by' => 'trip_count').limit(5).to_a
@@ -90,10 +96,17 @@ module CitiDash
           }
         end
 
-        user.to_api(stats: stats.to_api,
-                    latest_trips: latest_trips,
-                    favourite_routes: favourite_routes,
-                    routes_in_common: routes_in_common).to_json
+        {
+          id: user.id,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          name: user.short_name,
+          friendship: friendship,
+          stats: user.statistics.to_api,
+          latest_trips: latest_trips,
+          favourite_routes: favourite_routes,
+          routes_in_common: routes_in_common
+        }.to_json
       end
 
       get '/user' do
