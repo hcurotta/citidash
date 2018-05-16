@@ -4,23 +4,23 @@ module CitiDash
       use JwtAuth
 
       get '/stats' do
-        query = Leaderboard.statistics(params[:order_by])
-        format_query_json_response(query, request) do |stats|
-          stats.map do |stat|
+        query = Leaderboard.all_stats(params)
+        format_query_json_response(query, request) do |results|
+          results.map do |result|
             {
-              id: stat.id,
-              trip_count: stat.trip_count,
-              total_duration: stat.total_duration_in_seconds,
-              total_distance: stat.distance_travelled,
+              trip_count: result[:trip_count],
+              total_duration: result[:total_duration],
+              total_distance: result[:total_distance],
               user: {
-                id: stat.user.id,
-                name: stat.user.short_name
+                id: result[:user_id],
+                first_name: result[:user_first_name],
+                last_name: result[:user_last_name],
+                name: result[:user_short_name]
               }
             }
           end
         end
       end
-
     end
   end
 end
