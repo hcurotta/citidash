@@ -6,14 +6,15 @@ ENV['RACK_ENV'] ||= 'development'
 
 # Setup load paths
 Bundler.require
-$: << File.expand_path('../', __FILE__)
-$: << File.expand_path('../lib', __FILE__)
+$LOAD_PATH << File.expand_path('../', __FILE__)
+$LOAD_PATH << File.expand_path('../lib', __FILE__)
 
 # Dotenv load specific vars
 require 'dotenv'
 Dotenv.load(
   File.expand_path("../.env.#{ENV['RACK_ENV']}", __FILE__),
-  File.expand_path("../.env",  __FILE__))
+  File.expand_path('../.env', __FILE__)
+)
 
 # Require base
 require 'sinatra/base'
@@ -29,11 +30,11 @@ require 'app/helpers'
 require 'app/routes'
 require 'app/workers'
 
-if ENV['RACK_ENV'] == "production"
+if ENV['RACK_ENV'] == 'production'
   Sidekiq.configure_server do |config|
     # config.options[:concurrency] = 5
     config.redis = {
-      url: ENV['REDIS_URL'],
+      url: ENV['REDIS_URL']
     }
   end
 end
@@ -82,4 +83,4 @@ include CitiDash::Models
 include CitiDash::Services
 include CitiDash::Workers
 
-DB = Sequel.connect(CitiDash::App.database, :max_connections => 10, :logger => Logger.new('log/db.log'))
+DB = Sequel.connect(CitiDash::App.database, max_connections: 10, logger: Logger.new('log/db.log'))

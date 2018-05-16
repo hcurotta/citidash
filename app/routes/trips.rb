@@ -17,7 +17,7 @@ module CitiDash
                 id: result[:user_id],
                 first_name: result[:user_first_name],
                 last_name: result[:user_last_name],
-                name: result[:user_short_name],
+                name: result[:user_short_name]
               },
               route: {
                 id: result[:route_id],

@@ -8,7 +8,7 @@ Sequel.migration do
       String :first_name
       String :last_name
       String :short_name
-      String :citibike_id, :null=>false
+      String :citibike_id, null: false
     end
   end
 

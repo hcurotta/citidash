@@ -7,14 +7,12 @@ module CitiDash
       many_to_one :destination, class: :Station
 
       def before_create
-        self.route = Route.find_or_create({
-          origin_id: self.origin_id,
-          destination_id: self.destination_id
-        })
+        self.route = Route.find_or_create(origin_id: origin_id,
+                                          destination_id: destination_id)
         super
       end
 
-      def self.to_api(collection, with_associations=[])
+      def self.to_api(collection, with_associations = [])
         nested_objects = {}
 
         collection.map do |trip|
@@ -28,10 +26,10 @@ module CitiDash
 
       def to_api(nested_objects: {})
         {
-          id: self.id,
-          started_at: self.started_at,
-          ended_at: self.ended_at,
-          duration_in_seconds: self.duration_in_seconds,
+          id: id,
+          started_at: started_at,
+          ended_at: ended_at,
+          duration_in_seconds: duration_in_seconds
         }.merge(nested_objects)
       end
     end

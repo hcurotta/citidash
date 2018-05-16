@@ -1,9 +1,9 @@
 module CitiDash
   module Services
     class UserQueries
-      def self.find_user(query, exclude_user_id=nil)
-        query_string = <<-SQL 
-        SELECT 
+      def self.find_user(query, exclude_user_id = nil)
+        query_string = <<-SQL
+        SELECT
             u.id,
             first_name,
             last_name,
@@ -11,40 +11,39 @@ module CitiDash
             email,
             f.id as friendship_id,
             f.status as friendship_status
-        FROM 
+        FROM
             users AS u
         LEFT OUTER JOIN friendships AS f
             on f.friend_id = u.id
         WHERE
             NOT u.id = ?
-            AND concat_ws(' ', first_name, last_name, email) ILIKE ? 
+            AND concat_ws(' ', first_name, last_name, email) ILIKE ?
         SQL
 
         DB[query_string, exclude_user_id, "%#{query.squish}%"]
       end
 
-      # TODO Implement friends only filter
-      def self.users_of_route(route_id, options={})
-        valid_order_by = ["last_trip_ended_at", "trip_count", "duration_in_seconds"]
+      # TODO: Implement friends only filter
+      def self.users_of_route(route_id, options = {})
+        valid_order_by = %w(last_trip_ended_at trip_count duration_in_seconds)
 
-        if valid_order_by.include?(options["order_by"])
-          order_by = options["order_by"]
-        else
-          order_by = "duration_in_seconds"
-        end
+        order_by = if valid_order_by.include?(options['order_by'])
+                     options['order_by']
+                   else
+                     'duration_in_seconds'
+                   end
 
-        if order_by == "duration_in_seconds"
-          order_by = order_by + " ASC"
-        else
-          order_by = order_by + " DESC"
-        end
-      
-        start_date = options["start_date"] || DateTime.parse("1/1/2000")
-        end_date = options["end_date"] || DateTime.now
+        order_by = if order_by == 'duration_in_seconds'
+                     order_by + ' ASC'
+                   else
+                     order_by + ' DESC'
+                   end
 
+        start_date = options['start_date'] || DateTime.parse('1/1/2000')
+        end_date = options['end_date'] || DateTime.now
 
         query_string = <<-SQL
-          SELECT 
+          SELECT
               r.id,
               u.id as user_id,
               u.short_name as user_short_name,
@@ -54,9 +53,9 @@ module CitiDash
               max(t.ended_at) as last_trip_ended_at,
               count(r.id) as trip_count
           FROM routes as r
-          INNER JOIN trips as t 
+          INNER JOIN trips as t
               on t.route_id = r.id
-          INNER JOIN users as u 
+          INNER JOIN users as u
               on t.user_id = u.id
           WHERE
               r.id = ?

@@ -1,5 +1,4 @@
 Sequel.migration do
-
   up do
     add_column :routes, :distance, Integer
     add_column :routes, :map_thumb, String

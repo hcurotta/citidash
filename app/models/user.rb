@@ -10,7 +10,7 @@ module CitiDash
       one_to_many :friendships
       many_to_many :friends, left_key: :user_id, right_key: :friend_id, join_table: :friendships, class: :User
 
-      def before_save 
+      def before_save
         if @password
           cipher = OpenSSL::Cipher::AES256.new :CBC
           cipher.encrypt
@@ -31,14 +31,14 @@ module CitiDash
         decipher.key = ENV['DB_ENCRYPT_KEY']
         decipher.update(cipher_text) + decipher.final
       end
-      
+
       def jwt
         payload = {
 
           user: {
             id: id,
             exp: Time.now.to_i + 60 * 60,
-            iat: Time.now.to_i,
+            iat: Time.now.to_i
           }
         }
 
@@ -51,12 +51,12 @@ module CitiDash
         TripScraper.new(self).scrape_trips(agent)
       end
 
-      def to_api(nested_objects={})
+      def to_api(nested_objects = {})
         {
-          id: self.id,
-          first_name: self.first_name,
-          last_name: self.last_name,
-          name: self.short_name
+          id: id,
+          first_name: first_name,
+          last_name: last_name,
+          name: short_name
         }.merge(nested_objects)
       end
     end

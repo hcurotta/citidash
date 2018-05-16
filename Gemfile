@@ -2,21 +2,21 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'activesupport'
+gem 'aws-sdk-s3', '~> 1'
 gem 'dotenv'
 gem 'json'
-gem 'puma'
-gem 'rake'
-gem 'sinatra', require: 'sinatra/base'
-gem 'sinatra-contrib', github: 'maccman/sinatra-contrib'
-gem 'mechanize'
 gem 'jwt', '~> 1.5'
 gem 'mapbox-sdk'
-gem 'aws-sdk-s3', '~> 1'
+gem 'mechanize'
+gem 'puma'
+gem 'rake'
 gem 'sidekiq'
+gem 'sinatra', require: 'sinatra/base'
+gem 'sinatra-contrib', github: 'maccman/sinatra-contrib'
 
 # DB
-gem 'sequel'
 gem 'pg'
+gem 'sequel'
 
 group :development do
   gem 'foreman'
@@ -25,11 +25,11 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rack-test'
   gem 'rspec'
-  gem 'webmock'
   gem 'vcr'
-  gem 'database_cleaner'
+  gem 'webmock'
 end

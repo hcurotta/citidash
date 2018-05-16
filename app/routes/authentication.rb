@@ -1,7 +1,6 @@
 module CitiDash
   module Routes
     class Authentication < Base
-
       post '/register' do
         authenticator = Authenticator.new(params[:email], params[:password])
         user = authenticator.register(params[:accepts_terms])
@@ -13,7 +12,7 @@ module CitiDash
               name: user.short_name
             }
           }.to_json
-        else 
+        else
           halt 401
         end
       end
@@ -21,7 +20,7 @@ module CitiDash
       post '/login' do
         authenticator = Authenticator.new(params[:email], params[:password])
         user = authenticator.authenticate_user
-        if user 
+        if user
           {
             auth_token: user.jwt,
             user: {
@@ -29,11 +28,10 @@ module CitiDash
               name: user.short_name
             }
           }.to_json
-        else 
+        else
           halt 401
         end
       end
-      
     end
   end
 end

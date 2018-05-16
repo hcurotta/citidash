@@ -25,7 +25,6 @@ Sequel.migration do
       Integer :origin_id
       Integer :destination_id
     end
-
   end
 
   down do

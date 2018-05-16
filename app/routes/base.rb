@@ -14,7 +14,6 @@ module CitiDash
         content_type 'application/json'
       end
 
-
       helpers Helpers
     end
   end

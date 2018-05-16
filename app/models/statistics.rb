@@ -5,9 +5,9 @@ module CitiDash
 
       def to_api(nested_objects: {})
         {
-          trip_count: self.trip_count,
-          total_duration: self.total_duration_in_seconds,
-          total_distance: self.distance_travelled,
+          trip_count: trip_count,
+          total_duration: total_duration_in_seconds,
+          total_distance: distance_travelled
         }.merge(nested_objects)
       end
     end

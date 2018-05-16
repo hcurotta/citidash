@@ -1,13 +1,13 @@
 namespace :db do
   desc 'Run DB migrations'
-  task :migrate => :app do
-   require 'sequel/extensions/migration'
+  task migrate: :app do
+    require 'sequel/extensions/migration'
 
-   Sequel::Migrator.apply(DB, 'db/migrations')
+    Sequel::Migrator.apply(DB, 'db/migrations')
   end
 
   desc 'Rollback migration'
-  task :rollback => :app do
+  task rollback: :app do
     require 'sequel/extensions/migration'
     database = DB
 
@@ -16,7 +16,7 @@ namespace :db do
   end
 
   desc 'Dump the database schema'
-  task :dump => :app do
+  task dump: :app do
     database = DB
 
     `sequel -d #{database.url} > db/schema.rb`
@@ -24,7 +24,7 @@ namespace :db do
   end
 
   desc 'Seed'
-  task :seed => :app do
+  task seed: :app do
     StationLoader.refresh_stations
   end
 end

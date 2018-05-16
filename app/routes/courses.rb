@@ -3,7 +3,7 @@ module CitiDash
     # Course refers to Route resources, but since we're in the Routes module, we need to avoid a name clash
     class Courses < Base
       use JwtAuth
-      
+
       get '/routes' do
         query = RouteQueries.all_routes(params)
 
@@ -74,8 +74,8 @@ module CitiDash
       end
 
       get '/routes/:id/users' do
-        query = UserQueries.users_of_route(params["id"], params)
-        
+        query = UserQueries.users_of_route(params['id'], params)
+
         format_query_json_response(query, request) do |results|
           results.map do |result|
             {
@@ -92,7 +92,7 @@ module CitiDash
       end
 
       get '/routes/:id/trips' do
-        query = TripQueries.trips_on_route(params["id"], params)
+        query = TripQueries.trips_on_route(params['id'], params)
 
         format_query_json_response(query, request) do |results|
           results.map do |result|
@@ -110,7 +110,7 @@ module CitiDash
             }
           end
         end
-      end      
+      end
     end
   end
 end

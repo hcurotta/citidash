@@ -5,11 +5,9 @@ module CitiDash
 
       # Create Friendship
       post '/friendships' do
-        if !params["user_id"]
-          halt 400
-        end
+        halt 400 unless params['user_id']
 
-        friend = User.find(id: params["user_id"])
+        friend = User.find(id: params['user_id'])
         halt 404 unless friend
 
         friendship = Friendship.find_or_create(user_id: current_user.id, friend_id: friend.id)
@@ -28,7 +26,7 @@ module CitiDash
 
       # Accept Friendship Request
       put '/friendships/:id' do
-        friendship = Friendship.where(id: params["id"]).eager(:friend).first
+        friendship = Friendship.where(id: params['id']).eager(:friend).first
         friendship.accept!
         friendship.reload
         friend = friendship.friend
@@ -45,9 +43,9 @@ module CitiDash
         }.to_json
       end
 
-      # Reject/Cancel Friendship 
+      # Reject/Cancel Friendship
       delete '/friendships/:id' do
-        friendship = Friendship.where(id: params["id"])
+        friendship = Friendship.where(id: params['id'])
         friendship.destroy
         status 200
       end

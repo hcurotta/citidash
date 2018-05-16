@@ -6,11 +6,11 @@ module CitiDash
       one_to_many :trips
 
       def after_create
-        RouteMapperWorker.perform_async(self.id)
+        RouteMapperWorker.perform_async(id)
       end
 
       def active?
-        self.origin.inactive || self.destination.inactive
+        origin.inactive || destination.inactive
       end
     end
   end

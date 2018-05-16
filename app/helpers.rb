@@ -4,12 +4,12 @@ module CitiDash
       user_token_attributes = request.env.values_at(:user)
 
       if user_token_attributes
-        @user ||= User.find(id: user_token_attributes[0]["id"])
+        @user ||= User.find(id: user_token_attributes[0]['id'])
       else
         @user = nil
       end
 
-      return @user
+      @user
     end
 
     def json_result_wrapper(result, request)
@@ -20,7 +20,7 @@ module CitiDash
       response = {
         data: result,
         links: {
-          self: current_path,
+          self: current_path
         }
       }
 
@@ -30,11 +30,11 @@ module CitiDash
     def format_query_json_response(query, request)
       path = request.path
       params = request.params
-      offset = params["offset"] ? params["offset"].to_i : 0
-      limit = params["limit"] ? params["limit"].to_i : 100
+      offset = params['offset'] ? params['offset'].to_i : 0
+      limit = params['limit'] ? params['limit'].to_i : 100
       total = query.count
       query = query.limit(limit, offset)
-      
+
       results = yield(query)
 
       response_body = {
