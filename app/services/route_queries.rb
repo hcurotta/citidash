@@ -52,7 +52,7 @@ module CitiDash
             ORDER BY trip_count desc
           SQL
 
-          DB[query_string, common_routes, user_1.id, user_2.id]
+          DB[query_string, common_routes, user1.id, user2.id]
         end
       end
 
