@@ -32,10 +32,12 @@ module CitiDash
 
           friendship = Friendship.find(user_id: current_user.id, friend_id: user.id)
 
-          friendship = {
-            id: friendship.id,
-            status: friendship.status
-          }
+          if friendship
+            friendship = {
+              id: friendship.id,
+              status: friendship.status
+            }
+          end
         else
           routes_in_common = []
           friendship = nil
