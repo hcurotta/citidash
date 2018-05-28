@@ -30,17 +30,18 @@ module CitiDash
 
           formatted_start_date = start_date.strftime('%m/%d/%Y')
           formatted_end_date = end_date.strftime('%m/%d/%Y')
+
           export_url = "https://member.citibikenyc.com/profile/trips/#{@user.citibike_id}/print?edTripsPrint[startDate]=#{formatted_start_date}&edTripsPrint[endDate]=#{formatted_end_date}"
 
           page = agent.get(export_url)
 
-          trip_items = page.search('div.ed-table__item_trip')
+          trip_items = page.search('.ed-html-table__item_trip')
 
           trip_items.each do |item|
-            trip_start_time = item.search('div.ed-table__item__info__sub-info_trip-start-date').text
-            trip_end_time = item.search('div.ed-table__item__info__sub-info_trip-end-date').text
-            trip_origin = item.search('div.ed-table__item__info__sub-info_trip-start-station').text
-            trip_destination = item.search('div.ed-table__item__info__sub-info_trip-end-station').text
+            trip_start_time = item.search('div.ed-html-table__item__info__sub-info_trip-start-date').text
+            trip_end_time = item.search('div.ed-html-table__item__info__sub-info_trip-end-date').text
+            trip_origin = item.search('div.ed-html-table__item__info__sub-info_trip-start-station').text
+            trip_destination = item.search('div.ed-html-table__item__info__sub-info_trip-end-station').text
 
             origin_station = Station.find(name: trip_origin)
             origin_station = Station.create(name: trip_origin, inactive: true) if origin_station.nil?
