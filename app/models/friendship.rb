@@ -19,6 +19,14 @@ module CitiDash
         # Create corresponding friendship (insert skips callbacks)
         update(status: 'requested')
         Friendship.insert(user_id: friend_id, friend_id: user_id, status: 'pending')
+        # Notify friend
+        Notification.create({
+          user_id: friend_id,
+          body: "#{user.short_name} has sent you a friend request.",
+          type: "requested_friendship",
+          associated_object_type: "User",
+          associated_object_id: user_id
+        })
         super
       end
 
@@ -36,6 +44,15 @@ module CitiDash
         return false unless status == 'pending'
         update(status: 'accepted')
         corresponding_friendship.update(status: 'accepted')
+        
+        # Notify friend
+        Notification.create({
+          user_id: friend_id,
+          body: "#{user.short_name} accepted your friend request!",
+          type: "accepted_friendship",
+          associated_object_type: "User",
+          associated_object_id: user_id
+        })
       end
     end
   end

@@ -75,6 +75,7 @@ module CitiDash
     use Routes::Courses
     use Routes::Trips
     use Routes::Friendships
+    use Routes::Notifications
   end
 end
 
@@ -83,4 +84,5 @@ include CitiDash::Models
 include CitiDash::Services
 include CitiDash::Workers
 
+Sequel::Model.plugin :timestamps, :create => :created_at, :update => :updated_at, :update_on_create => true
 DB = Sequel.connect(CitiDash::App.database, max_connections: 10, logger: Logger.new('log/db.log'))

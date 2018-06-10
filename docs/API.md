@@ -780,6 +780,10 @@ List all notifications for the logged in user by most recent first.
 
 *GET* `/notifications`
 
+| Param | Value | Required | Default |
+| --- | --- | --- | --- |
+| read | `true` or `false`  | no | all notifications |
+
 #### Response
 
 ```
@@ -789,16 +793,18 @@ List all notifications for the logged in user by most recent first.
   "limit": 100,
   "data": [
     {
-      "id": 2,
-      "type": "friend_request",
-      "text": "Harry C. added you as a friend.",
-      "unread": "true",
+      "id": 1,
+      "body": "Harry C. has sent you a friend request.",
+      "associated_object_id": 1,
+      "associated_object_type": "User",
+      "read": false
     },
     {
-      "id": 1,
-      "type": "beaten_time",
-      "text": "John M. beat your time.",
-      "unread": "false",
+      "id": 2,
+      "body": "John M. has sent you a friend request.",
+      "associated_object_id": 2,
+      "associated_object_type": "User",
+      "read": true
     }
   ],
 }
@@ -806,7 +812,7 @@ List all notifications for the logged in user by most recent first.
 
 ### Acknowledge Notification
 
-Acknowledge a notification, changing it's unread status to false. 
+Acknowledge a notification, changing its read status to true. 
 
 #### Request
 
@@ -816,10 +822,11 @@ Acknowledge a notification, changing it's unread status to false.
 
 ```
 {
-  "id": 2,
-  "type": "friend_request",
-  "text": "Harry C. added you as a friend.",
-  "unread": "false",
+  "id": 1,
+  "body": "Harry C. has sent you a friend request.",
+  "associated_object_id": 1,
+  "associated_object_type": "User",
+  "read": true
 }
 ```
 

@@ -6,6 +6,7 @@ module CitiDash
       # Create Friendship
       post '/friendships' do
         halt 400 unless params['user_id']
+        halt 400 if params['user_id'].to_i == current_user.id
 
         friend = User.find(id: params['user_id'])
         halt 404 unless friend
@@ -45,7 +46,8 @@ module CitiDash
 
       # Reject/Cancel Friendship
       delete '/friendships/:id' do
-        friendship = Friendship.where(id: params['id'])
+        friendship = Friendship.find(id: params['id'])
+        halt 404 unless friendship
         friendship.destroy
         status 200
       end

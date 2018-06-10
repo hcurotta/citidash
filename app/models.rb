@@ -7,5 +7,6 @@ module CitiDash
     autoload :Route, 'app/models/route'
     autoload :Trip, 'app/models/trip'
     autoload :Friendship, 'app/models/friendship'
+    autoload :Notification, 'app/models/notification'
   end
 end

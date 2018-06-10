@@ -9,5 +9,6 @@ module CitiDash
     autoload :Courses, 'app/routes/courses'
     autoload :Trips, 'app/routes/trips'
     autoload :Friendships, 'app/routes/friendships'
+    autoload :Notifications, 'app/routes/notifications'
   end
 end
