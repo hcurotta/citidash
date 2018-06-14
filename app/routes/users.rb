@@ -105,6 +105,7 @@ module CitiDash
           name: user.short_name,
           friendship: friendship,
           stats: user.statistics.to_api,
+          last_refreshed_at: user.last_refreshed_at,
           latest_trips: latest_trips,
           favourite_routes: favourite_routes,
           routes_in_common: routes_in_common
@@ -231,6 +232,7 @@ module CitiDash
       post '/refresh_data' do
         # temporarily disabled during dev
         # current_user.refresh_data!
+        current_user.update(last_refreshed_at: Time.now)
         status 200
       end
     end
