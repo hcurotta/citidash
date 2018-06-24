@@ -10,5 +10,6 @@ module CitiDash
     autoload :Trips, 'app/routes/trips'
     autoload :Friendships, 'app/routes/friendships'
     autoload :Notifications, 'app/routes/notifications'
+    autoload :MetaRoutes, 'app/routes/meta_routes'
   end
 end

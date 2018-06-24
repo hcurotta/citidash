@@ -76,6 +76,7 @@ module CitiDash
     use Routes::Trips
     use Routes::Friendships
     use Routes::Notifications
+    use Routes::MetaRoutes
   end
 end
 

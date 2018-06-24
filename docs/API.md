@@ -180,6 +180,7 @@ Favourite routes are routes with most trips, ordered by number of trips descendi
     "total_duration": 200380,
     "total_distance": 415,
   },
+  "last_refreshed_at": "2018-06-14T06:14:41.634+00:00",
   "latest_trips": [
     {
       "id": 1,
