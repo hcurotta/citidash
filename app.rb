@@ -70,13 +70,13 @@ module CitiDash
 
     # Other routes:
     use Routes::Authentication
+    use Routes::MetaRoutes
     use Routes::Users
     use Routes::Stats
     use Routes::Courses
     use Routes::Trips
     use Routes::Friendships
     use Routes::Notifications
-    use Routes::MetaRoutes
   end
 end
 

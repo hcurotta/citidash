@@ -1,6 +1,7 @@
 module CitiDash
   module Routes
     class Authentication < Base
+
       post '/register' do
         authenticator = Authenticator.new(params[:email], params[:password])
         user = authenticator.register(params[:accepts_terms])
