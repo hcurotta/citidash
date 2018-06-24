@@ -3,8 +3,8 @@ module CitiDash
     class MetaRoutes < Base
 
       # Loader.io Verification
-      get '/loaderio-fae07c66fb0f00b82c474cc185255628loaderio-fae07c66fb0f00b82c474cc18525562' do
-        'loader.io verification'
+      get '/loaderio-fae07c66fb0f00b82c474cc185255628' do
+        'loaderio-fae07c66fb0f00b82c474cc185255628'
       end
 
     end
