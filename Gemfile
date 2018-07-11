@@ -18,6 +18,9 @@ gem 'sinatra-contrib', github: 'maccman/sinatra-contrib'
 gem 'pg'
 gem 'sequel'
 
+# Alerts 
+gem "sentry-raven"
+
 group :development do
   gem 'foreman'
   gem 'pry'
