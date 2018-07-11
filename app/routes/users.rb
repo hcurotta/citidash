@@ -104,7 +104,11 @@ module CitiDash
           last_name: user.last_name,
           name: user.short_name,
           friendship: friendship,
-          stats: user.statistics.to_api,
+          stats: {
+            trip_count: user.trips.count,
+            total_duration: user.trips.pluck(:duration_in_seconds).inject(:+),
+            total_distance: (u.trips.pluck(:duration_in_seconds).inject(:+) / 3600 * 7.45)
+          },
           last_refreshed_at: user.last_refreshed_at,
           latest_trips: latest_trips,
           favourite_routes: favourite_routes,
