@@ -107,7 +107,7 @@ module CitiDash
           stats: {
             trip_count: user.trips.count,
             total_duration: user.trips.pluck(:duration_in_seconds).inject(:+),
-            total_distance: (user.trips.pluck(:duration_in_seconds).inject(:+) / 3600 * 7.45).ceil
+            total_distance: ((user.trips.pluck(:duration_in_seconds).inject(:+) || 0) / 3600 * 7.45).ceil
           },
           last_refreshed_at: user.last_refreshed_at,
           latest_trips: latest_trips,
