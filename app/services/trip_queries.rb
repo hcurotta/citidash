@@ -117,6 +117,8 @@ module CitiDash
             u.short_name as user_short_name,
             u.first_name as user_first_name,
             u.last_name as user_last_name,
+            a.url as user_avatar_url,
+            a.id as user_avatar_id,
             t.duration_in_seconds as duration_in_seconds,
             t.started_at as started_at,
             t.ended_at as ended_at
@@ -125,6 +127,8 @@ module CitiDash
             on t.route_id = r.id
           INNER JOIN users as u
             on t.user_id = u.id
+          INNER JOIN avatars as a
+              on u.avatar_id = a.id
           WHERE r.id = ?
             AND t.started_at >= ?
             AND t.ended_at <= ?

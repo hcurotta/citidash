@@ -8,5 +8,6 @@ module CitiDash
     autoload :Trip, 'app/models/trip'
     autoload :Friendship, 'app/models/friendship'
     autoload :Notification, 'app/models/notification'
+    autoload :Avatar, 'app/models/avatar'
   end
 end

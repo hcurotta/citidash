@@ -67,7 +67,11 @@ module CitiDash
               id: fastest_trip[:user_id],
               name: fastest_trip[:user_short_name],
               first_name: fastest_trip[:user_first_name],
-              last_name: fastest_trip[:user_last_name]
+              last_name: fastest_trip[:user_last_name],
+              avatar: {
+                id: fastest_trip[:user_avatar_id],
+                url: fastest_trip[:user_avatar_url]
+              }
             }
           }
         }.to_json
@@ -83,6 +87,10 @@ module CitiDash
               first_name: result[:user_first_name],
               last_name: result[:user_last_name],
               name: result[:user_short_name],
+              avatar: {
+                id: result[:user_avatar_id],
+                url: result[:user_avatar_url]
+              },
               fastest_trip_duration_in_seconds: result[:duration_in_seconds],
               trip_count: result[:trip_count],
               last_trip_ended_at: result[:last_trip_ended_at]
@@ -105,7 +113,11 @@ module CitiDash
                 id: result[:user_id],
                 name: result[:user_short_name],
                 first_name: result[:user_first_name],
-                last_name: result[:user_last_name]
+                last_name: result[:user_last_name],
+                avatar: {
+                  id: result[:user_avatar_id],
+                  url: result[:user_avatar_url]
+                }
               }
             }
           end

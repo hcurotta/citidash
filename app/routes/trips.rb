@@ -17,7 +17,11 @@ module CitiDash
                 id: result[:user_id],
                 first_name: result[:user_first_name],
                 last_name: result[:user_last_name],
-                name: result[:user_short_name]
+                name: result[:user_short_name],
+                avatar: {
+                  id: result[:user_avatar_id],
+                  url: result[:user_avatar_url]
+                }
               },
               route: {
                 id: result[:route_id],
@@ -56,7 +60,11 @@ module CitiDash
             id: trip.user_id,
             first_name: trip.user.first_name,
             last_name: trip.user.last_name,
-            name: trip.user.short_name
+            name: trip.user.short_name,
+            avatar: {
+              id: trip.user.avatar_id,
+              url: trip.user.avatar.url
+            }
           },
           route: {
             id: trip.route_id,

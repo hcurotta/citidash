@@ -11,5 +11,6 @@ module CitiDash
     autoload :Trips, 'app/routes/trips'
     autoload :Friendships, 'app/routes/friendships'
     autoload :Notifications, 'app/routes/notifications'
+    autoload :Avatars, 'app/routes/avatars'
   end
 end

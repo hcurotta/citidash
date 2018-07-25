@@ -15,7 +15,11 @@ module CitiDash
                 id: result[:user_id],
                 first_name: result[:user_first_name],
                 last_name: result[:user_last_name],
-                name: result[:user_short_name]
+                name: result[:user_short_name],
+                avatar: {
+                  id: result[:user_avatar_id],
+                  url: result[:user_avatar_url]
+                }
               }
             }
           end

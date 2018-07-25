@@ -9,8 +9,14 @@ module CitiDash
       one_to_many :trips
       one_to_many :notifications
       one_to_many :friendships
+      many_to_one :avatar
+
       many_to_many :friends, left_key: :user_id, right_key: :friend_id, join_table: :friendships, class: :User do |dataset|
         dataset.where(status: 'accepted')
+      end
+
+      def before_create
+        self.avatar_id = Avatar.first.id
       end
 
       def before_save

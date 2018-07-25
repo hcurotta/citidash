@@ -104,6 +104,10 @@ module CitiDash
           last_name: user.last_name,
           name: user.short_name,
           friendship: friendship,
+          avatar: {
+            id: user.avatar_id,
+            url: user.avatar.url
+          },
           stats: {
             trip_count: user.trips.count,
             total_duration: user.trips.pluck(:duration_in_seconds).inject(:+),
@@ -135,6 +139,10 @@ module CitiDash
               first_name: user[:first_name],
               last_name: user[:last_name],
               name: user[:short_name],
+              avatar: {
+                id: user[:user_avatar_id],
+                url: user[:user_avatar_url]
+              },
               friendship: {
                 id: user[:friendship_id],
                 status: user[:friendship_status]
@@ -226,11 +234,26 @@ module CitiDash
                 id: friendship.friend.id,
                 first_name: friendship.friend.first_name,
                 last_name: friendship.friend.last_name,
-                name: friendship.friend.short_name
+                name: friendship.friend.short_name,
+                avatar: {
+                  id: friendship.friend.avatar_id,
+                  url: friendship.friend.avatar.url
+                },
               }
             }
           end
         end
+      end
+
+      put '/user' do
+        halt 400 unless params['avatar_id']
+
+        avatar = Avatar.find(id: params['avatar_id'])
+        halt 404 unless avatar
+        
+        current_user.update(avatar_id: avatar.id)
+
+        status 200
       end
 
       post '/refresh_data' do
@@ -241,4 +264,4 @@ module CitiDash
       end
     end
   end
-  end
+end

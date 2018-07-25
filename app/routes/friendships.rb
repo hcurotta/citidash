@@ -20,7 +20,11 @@ module CitiDash
             id: friend.id,
             first_name: friend.first_name,
             last_name: friend.last_name,
-            name: friend.short_name
+            name: friend.short_name,
+            avatar: {
+              id: friend.avatar_id,
+              url: friend.avatar.url
+            }
           }
         }.to_json
       end
@@ -39,7 +43,11 @@ module CitiDash
             id: friend.id,
             first_name: friend.first_name,
             last_name: friend.last_name,
-            name: friend.short_name
+            name: friend.short_name,
+            avatar: {
+              id: friend.avatar_id,
+              url: friend.avatar.url
+            }
           }
         }.to_json
       end

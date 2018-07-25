@@ -9,10 +9,14 @@ module CitiDash
             last_name,
             short_name,
             email,
+            a.id as user_avatar_id,
+            a.url as user_avatar_url,
             f.id as friendship_id,
             f.status as friendship_status
         FROM
             users AS u
+        INNER JOIN avatars as a
+            on u.avatar_id = a.id
         LEFT OUTER JOIN friendships AS f
             on f.friend_id = u.id
         WHERE
@@ -49,6 +53,8 @@ module CitiDash
               u.short_name as user_short_name,
               u.first_name as user_first_name,
               u.last_name as user_last_name,
+              a.id as user_avatar_id,
+              a.url as user_avatar_url,
               min(t.duration_in_seconds) as duration_in_seconds,
               max(t.ended_at) as last_trip_ended_at,
               count(r.id) as trip_count
@@ -57,10 +63,12 @@ module CitiDash
               on t.route_id = r.id
           INNER JOIN users as u
               on t.user_id = u.id
+          INNER JOIN avatars as a
+              on u.avatar_id = a.id
           WHERE r.id = ?
             AND t.started_at >= ?
             AND t.ended_at <= ?
-          GROUP BY r.id, u.id
+          GROUP BY r.id, u.id, a.id
           ORDER BY #{order_by}
         SQL
 
